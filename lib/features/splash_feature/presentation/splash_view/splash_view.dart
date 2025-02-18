@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../core/utils/assets/images.dart';
+import 'package:food_guardian/features/splash_feature/presentation/splash_view/splash_widgets/splash_body.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -8,32 +7,7 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              AppImages.bgSplash,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            bottom: 50,
-            child: GestureDetector(
-              onTap: () {
-                GoRouter.of(context).push("register");
-              },
-              child: Container(
-                width: 100,
-                height: 35,
-                color: Colors.green,
-                child: const Center(
-                    child: Text("Register",
-                        style: TextStyle(color: Colors.white))),
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: SafeArea(child: SplashBody())
     );
   }
 }
