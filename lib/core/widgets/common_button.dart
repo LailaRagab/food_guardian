@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/assets/colors.dart';
 
 class CommonButton extends StatelessWidget {
-  const CommonButton({super.key,});
+  const CommonButton({super.key, required this.onTap,});
 
-
+final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: InkWell(
-        onTap: (){
-          GoRouter.of(context).push("/register");
-        },
+        onTap: onTap,
         child: Container(
           width: 146,
           height: 48,

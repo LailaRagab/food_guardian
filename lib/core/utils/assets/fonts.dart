@@ -9,5 +9,4 @@ class AppFonts{
     fontWeight: FontWeight.bold,
     color: AppColors.kWhite,
       );
-
 }
