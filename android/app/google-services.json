@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "338801247904",
+    "project_id": "food-quardian",
+    "storage_bucket": "food-quardian.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338801247904:android:bd7003e0c3542d962aabc5",
+        "android_client_info": {
+          "package_name": "com.example.food_guardian"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwilpOog8ABD6fu5nEl5V2yHDXx7_Bm3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

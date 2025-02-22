@@ -1,0 +1,2 @@
+C:/Users/User/StudioProjects/food_guardian-master/food_guardian-master/android/app/.cxx/Debug/2f2t411y/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/User/StudioProjects/food_guardian-master/food_guardian-master/android/app/.cxx/Debug/2f2t411y/armeabi-v7a/CMakeFiles/rebuild_cache.dir
