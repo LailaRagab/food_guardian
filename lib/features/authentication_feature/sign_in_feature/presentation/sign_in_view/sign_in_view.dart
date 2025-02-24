@@ -29,14 +29,16 @@ class SignInView extends StatelessWidget {
       },
       builder: (context, state) => ModalProgressHUD(
         inAsyncCall: isLoaded,
-        child: Scaffold(
-          appBar: AuthAppBar(
-            titleAppBar: 'Register',
-            onTap: () {
-              GoRouter.of(context).push("/register");
-            },
+        child: SafeArea(
+          child: Scaffold(
+            appBar: AuthAppBar(
+              titleAppBar: 'Register',
+              onTap: () {
+                GoRouter.of(context).push("/register");
+              },
+            ),
+            body: SignInBody(),
           ),
-          body: SafeArea(child: SignInBody()),
         ),
       ),
     );

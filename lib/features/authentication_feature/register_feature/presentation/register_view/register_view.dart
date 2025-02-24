@@ -29,15 +29,15 @@ class RegisterView extends StatelessWidget {
       },
       builder: (BuildContext context, Object? state) => ModalProgressHUD(
         inAsyncCall: isLoaded,
-        child: Scaffold(
-          appBar: AuthAppBar(
-            titleAppBar: 'Sign in',
-            onTap: () {
-              GoRouter.of(context).push("/login");
-            },
-          ),
-          body: SafeArea(
-            child: RegisterBody(),
+        child: SafeArea(
+          child: Scaffold(
+            appBar: AuthAppBar(
+              titleAppBar: 'Sign in',
+              onTap: () {
+                GoRouter.of(context).push("/login");
+              },
+            ),
+            body: RegisterBody(),
           ),
         ),
       ),
