@@ -16,17 +16,18 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInStates>(
-      listener: (BuildContext context, Object? state) {
+      listener: (context, state) {
         if (state is SignInLoading) {
           isLoaded = true;
         } else if (state is SignInSuccess) {
           GoRouter.of(context).push("/home");
+          isLoaded = false;
         } else if (state is SignInFailure) {
-          snackBar(context, state.messageError);
+          snackBar(context, state.errorMessage);
+          isLoaded = false;
         }
-        isLoaded = false;
       },
-      builder: (BuildContext context, state) => ModalProgressHUD(
+      builder: (context, state) => ModalProgressHUD(
         inAsyncCall: isLoaded,
         child: Scaffold(
           appBar: AuthAppBar(

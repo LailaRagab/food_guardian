@@ -7,7 +7,7 @@ class SignInLoading extends SignInStates {}
 class SignInSuccess extends SignInStates {}
 
 class SignInFailure extends SignInStates {
-  String messageError;
+  String errorMessage;
 
-  SignInFailure({required this.messageError});
+  SignInFailure({required this.errorMessage});
 }

@@ -1,24 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view/register_widgets/auth_snack_bar.dart';
+import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_cubit.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/widgets/common_button.dart';
 import 'auth_custom_text_field.dart';
 
-class RegisterBody extends StatefulWidget {
+class RegisterBody extends StatelessWidget {
   RegisterBody({
     super.key,
-    required this.setLoading,
   });
-
-  final Function(bool) setLoading;
-
-  @override
-  State<RegisterBody> createState() => _RegisterBodyState();
-}
-
-class _RegisterBodyState extends State<RegisterBody> {
   String? email;
 
   String? password;
@@ -86,20 +79,13 @@ class _RegisterBodyState extends State<RegisterBody> {
             CommonButton(
               onTap: () async {
                 if (formKey.currentState!.validate()) {
-                  widget.setLoading(true);
-                  try {
-                    await registerUser(context);
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'weak-password') {
-                      snackBar(context, 'The password provided is too weak.');
-                    } else if (e.code == 'email-already-in-use') {
-                      snackBar(context,
-                          'The account already exists for that email.');
-                    }
-                  } catch (e) {
-                    snackBar(context, "There is an error");
+                  if (rePassword != password) {
+                    snackBar(context, "Passwords do not match!");
+                    return;
                   }
-                  widget.setLoading(false);
+                  BlocProvider.of<RegisterCubit>(context).registerUser(
+                      email: email, password: password, name: name);
+                  // widget.setLoading(false);
                 }
               },
             ),
@@ -110,22 +96,5 @@ class _RegisterBodyState extends State<RegisterBody> {
         ),
       ),
     );
-  }
-
-  Future<void> registerUser(BuildContext context) async {
-    if (rePassword != password) {
-      snackBar(context, "Passwords do not match!");
-      widget.setLoading(false);
-      return;
-    }
-    final credential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email!,
-      password: password!,
-    );
-    await credential.user?.updateDisplayName(name);
-    await credential.user?.reload();
-    widget.setLoading(false);
-    GoRouter.of(context).push("/home");
   }
 }
