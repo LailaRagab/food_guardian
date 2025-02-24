@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view_model/sign_in_cubit/sign_in_cubit.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../../../../core/widgets/common_button.dart';
 import '../../../../register_feature/presentation/register_view/register_widgets/auth_custom_text_field.dart';
 
@@ -56,7 +53,7 @@ class SignInBody extends StatelessWidget {
               onTap: () async {
                 if (formKey.currentState!.validate()) {
                   BlocProvider.of<SignInCubit>(context)
-                      .signInAuth(email: email, password: password);
+                      .signInAuth(email: email!, password: password!);
                 }
               },
             ),
