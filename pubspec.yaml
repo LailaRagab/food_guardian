@@ -39,6 +39,7 @@ dependencies:
   firebase_auth: ^5.5.0
   modal_progress_hud_nsn: ^0.5.1
   flutter_bloc: ^9.0.0
+  flutter_speed_dial: ^7.0.0
 
 dev_dependencies:
   flutter_test:

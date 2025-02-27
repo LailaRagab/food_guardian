@@ -17,4 +17,9 @@ class AppFonts {
     fontWeight: FontWeight.w400,
     color: AppColors.kEmptyBodyHomeText,
   );
+  static TextStyle fontBlack18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: AppColors.kBlack,
+  );
 }
