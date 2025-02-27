@@ -26,18 +26,18 @@ class AuthCustomTextFormField extends StatelessWidget {
           return "Field is required";
         }
       },
+      cursorColor: AppColors.kHintText,
       onChanged: onChanged,
       obscureText: forSecure,
       decoration: InputDecoration(
           suffixIcon: suffixIcon,
           prefixIcon: preIcon,
           hintText: hintText,
-          hintStyle: AppFonts.fontWhite20.copyWith(
-              color: AppColors.kTextAuth, fontWeight: FontWeight.w100),
+          hintStyle: AppFonts.font20HintStyle,
           contentPadding: EdgeInsets.only(left: 50),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: AppColors.kTextAuth),
+            borderSide: BorderSide(color: AppColors.kHintText),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),

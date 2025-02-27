@@ -10,7 +10,7 @@ class CustomAddManuallyBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: 337,
+        height: 600,
         decoration: BoxDecoration(
             color: AppColors.kWhite,
             borderRadius: BorderRadius.only(

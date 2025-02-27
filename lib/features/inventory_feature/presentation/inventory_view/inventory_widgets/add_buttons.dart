@@ -23,6 +23,8 @@ class AddButton extends StatelessWidget {
             ),
             onTap: () {
               showModalBottomSheet(
+                useSafeArea: true,
+                isScrollControlled: true,
                 backgroundColor: AppColors.kTransparent,
                 context: context,
                 builder: (context) {

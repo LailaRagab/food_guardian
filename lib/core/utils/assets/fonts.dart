@@ -22,4 +22,14 @@ class AppFonts {
     fontWeight: FontWeight.bold,
     color: AppColors.kBlack,
   );
+  static TextStyle font20HintStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w100,
+    color: AppColors.kHintText,
+  );
+  static TextStyle font13 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: AppColors.kUploadButtonText,
+  );
 }

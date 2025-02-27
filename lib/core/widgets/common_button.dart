@@ -12,17 +12,21 @@ class CommonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          width: 146,
-          height: 48,
-          decoration: BoxDecoration(
-            color: AppColors.kPrimary,
-            borderRadius: BorderRadius.circular(17),
+      child: Material(
+        color: AppColors.kTransparent,
+        child: InkWell(
+          onTap: onTap,
+          // borderRadius: BorderRadius.circular(17),
+          child: Container(
+            width: 146,
+            height: 48,
+            decoration: BoxDecoration(
+              color: AppColors.kPrimary,
+              borderRadius: BorderRadius.circular(17),
+            ),
+            child: Center(
+                child: Text(textCommonButton, style: AppFonts.fontWhite20)),
           ),
-          child: Center(
-              child: Text(textCommonButton, style: AppFonts.fontWhite20)),
         ),
       ),
     );

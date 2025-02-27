@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/utils/assets/colors.dart';
 import '../../../../../../core/utils/assets/fonts.dart';
 
-class AuthAppBar extends StatelessWidget implements PreferredSizeWidget{
+class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AuthAppBar({super.key, required this.titleAppBar, required this.onTap});
 
   final String titleAppBar;
@@ -10,7 +10,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget{
 
   @override
   Widget build(BuildContext context) {
-    return  AppBar(
+    return AppBar(
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(top: 20),
@@ -29,7 +29,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget{
                     child: Text(
                       titleAppBar,
                       style: AppFonts.fontWhite20.copyWith(
-                          color: AppColors.kTextAuth,
+                          color: AppColors.kHintText,
                           fontWeight: FontWeight.w100),
                     ),
                   ),
@@ -37,8 +37,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget{
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 
   @override
