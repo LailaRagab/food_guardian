@@ -9,4 +9,6 @@ class AppColors {
   static Color kShadow = Color(0XFF000000);
   static Color kBlack = Colors.black;
   static Color kTransparent = Colors.transparent;
+  static Color kItemCardBg = Color(0XFFF2F2F2);
+  static Color kEmptyBodyHomeText = Color(0XFF707070);
 }

@@ -4,8 +4,8 @@ import 'package:food_guardian/core/widgets/title_app_bar_screens.dart';
 
 import '../utils/assets/colors.dart';
 
-class TheAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const TheAppBar({super.key});
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
