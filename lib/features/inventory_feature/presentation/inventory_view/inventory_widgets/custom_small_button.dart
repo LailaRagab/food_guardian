@@ -3,13 +3,19 @@ import 'package:food_guardian/core/utils/assets/colors.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
 
 class CustomSmallButton extends StatelessWidget {
-  const CustomSmallButton({super.key});
+  CustomSmallButton({
+    super.key,
+    this.onTap,
+  });
+
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: AppColors.kTransparent,
       child: InkWell(
+        onTap: onTap,
         child: Container(
           width: 80,
           height: 40,

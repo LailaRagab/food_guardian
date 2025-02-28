@@ -4,13 +4,18 @@ import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
 
 class CustomAddingItemTextField extends StatelessWidget {
-  const CustomAddingItemTextField({super.key, required this.hint});
+  CustomAddingItemTextField({
+    super.key,
+    required this.hint,
+    required this.onSubmitted,
+  });
 
   final String hint;
-
+  final Function(String) onSubmitted;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onSubmitted,
       cursorColor: AppColors.kHintText,
       decoration: InputDecoration(
           hintText: hint,
