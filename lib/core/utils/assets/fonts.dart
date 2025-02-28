@@ -32,4 +32,9 @@ class AppFonts {
     fontWeight: FontWeight.w400,
     color: AppColors.kUploadButtonText,
   );
+  static TextStyle font14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.kWhite,
+  );
 }

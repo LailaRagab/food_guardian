@@ -15,25 +15,10 @@ class FridgeCategory extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: ItemCard(),
-          ),
-          SliverToBoxAdapter(
-            child: ItemCard(),
-          ),
-          SliverToBoxAdapter(
-            child: ItemCard(),
-          ),
-          SliverToBoxAdapter(
-            child: ItemCard(),
-          ),
-          SliverToBoxAdapter(
-            child: ItemCard(),
-          ),
-          SliverToBoxAdapter(
-            child: ItemCard(),
-          ),
-          SliverToBoxAdapter(
-            child: ItemCard(),
+            child: ItemCard(
+              itemID: '',
+              onDelete: () {},
+            ),
           ),
         ]);
   }
