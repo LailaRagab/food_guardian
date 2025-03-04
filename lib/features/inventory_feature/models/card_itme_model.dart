@@ -1,26 +1,37 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CardItemModel {
   static String collectionName = "InventoryCollection";
-  // String id;
-  String itemName;
-  String itemQuantity;
-  DateTime itemExpirationDate;
-  // String itemCategory;
+  final String docIDForDeleteAndEdit;
+  final String itemName;
+  final String itemQuantity;
+  final DateTime itemExpirationDate;
 
   CardItemModel({
-    // required this.id,
     required this.itemName,
     required this.itemQuantity,
     required this.itemExpirationDate,
-    // required this.itemCategory,
+    required this.docIDForDeleteAndEdit,
   });
+
+  // Updated factory constructor to accept a QueryDocumentSnapshot directly
+  factory CardItemModel.fromJson(QueryDocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>; // Extract data properly
+    return CardItemModel(
+      docIDForDeleteAndEdit: doc.id, // Use document ID
+      itemName: data["name"] ?? "",
+      itemQuantity: data["quantity"] ?? "",
+      itemExpirationDate:
+          (data["exDate"] as Timestamp).toDate(), // Convert Firestore Timestamp
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
-      // "userID": id,
+      "docID": docIDForDeleteAndEdit,
       "name": itemName,
       "quantity": itemQuantity,
       "exDate": itemExpirationDate,
-      // "category": itemCategory,
     };
   }
 }
