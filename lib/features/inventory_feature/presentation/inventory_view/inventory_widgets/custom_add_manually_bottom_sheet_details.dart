@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_adding_item_text_field.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_date_picker.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_drop_down_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_small_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_upload_image_button.dart';
+
 import '../../../../../core/utils/assets/fonts.dart';
 
 class CustomAddManuallyBottomSheetDetails extends StatefulWidget {
@@ -61,14 +62,14 @@ class _CustomAddManuallyBottomSheetDetailsState
               });
             },
           ),
-          InkWell(
-            child: Text(
-              selectedDate.dateFormate(),
-              style: AppFonts.fontBlack18,
-            ),
+          SizedBox(
+            height: 30,
+          ),
+          CustomDatePicker(
             onTap: () {
               showMyDatePicker(context);
             },
+            date: selectedDate,
           ),
           const SizedBox(height: 20),
           CustomDropDownButton(
@@ -102,6 +103,7 @@ class _CustomAddManuallyBottomSheetDetailsState
             firstDate: DateTime.now(),
             lastDate: DateTime.now().add(Duration(days: 365))) ??
         selectedDate;
+
     if (selectedDate != null) {
       setState(() {
         selectedDate = selectedDate;
@@ -114,14 +116,16 @@ class _CustomAddManuallyBottomSheetDetailsState
         .collection(CardItemModel.collectionName)
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection(category);
+
+    DocumentReference documentReference = inventoryCollection.doc();
     CardItemModel cardItemModel = CardItemModel(
-      // id: FirebaseAuth.instance.currentUser!.uid,
+      docIDForDeleteAndEdit: documentReference.id,
       itemName: name,
       itemQuantity: quantity,
       itemExpirationDate: selectedDate,
-      // itemCategory: category,
     );
-
-    inventoryCollection.add(cardItemModel.toJson());
+    documentReference.set(cardItemModel.toJson());
+    Navigator.pop(context);
+    // inventoryCollection.add(cardItemModel.toJson());
   }
 }

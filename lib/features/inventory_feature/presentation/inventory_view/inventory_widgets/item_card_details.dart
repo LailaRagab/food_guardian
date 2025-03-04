@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
+import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 
 import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
 import '../../../../../core/utils/assets/images.dart';
 
 class ItemCardDetails extends StatelessWidget {
-  const ItemCardDetails({super.key});
+  const ItemCardDetails({super.key, required this.model});
+
+  final CardItemModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +32,21 @@ class ItemCardDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Name: Candy",
+              "Name: ${model.itemName}",
               style: AppFonts.font16,
             ),
             SizedBox(
               height: 8,
             ),
             Text(
-              "Quantity: 60 kg",
+              "Quantity: ${model.itemQuantity}",
               style: AppFonts.font16,
             ),
             SizedBox(
               height: 8,
             ),
             Text(
-              "Expiration date: 11-4-2025",
+              "Expiration date: ${model.itemExpirationDate.dateFormate()}",
               style: AppFonts.font16
                   .copyWith(color: AppColors.kDarkGrey, fontSize: 12),
             ),
