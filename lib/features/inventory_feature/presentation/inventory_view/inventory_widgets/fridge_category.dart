@@ -6,8 +6,6 @@ class FridgeCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InventoryCategoryBody(
-      subCollection: 'Fridge',
-    );
+    return InventoryCategoryBody(subCollection: "Fridge");
   }
 }

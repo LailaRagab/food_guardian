@@ -4,7 +4,9 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import '../../../../../core/utils/assets/colors.dart';
 
 class DeleteAndEditActions extends StatelessWidget {
-  const DeleteAndEditActions({super.key});
+  const DeleteAndEditActions({super.key, required this.subCategory});
+
+  final String subCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,9 @@ class DeleteAndEditActions extends StatelessWidget {
       ),
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: DeleteAndEditDetails()),
+          child: DeleteAndEditDetails(
+            subCategory: subCategory,
+          )),
     );
   }
 }

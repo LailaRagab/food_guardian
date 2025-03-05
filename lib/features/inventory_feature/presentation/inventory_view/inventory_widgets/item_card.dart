@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
@@ -10,22 +11,26 @@ class ItemCard extends StatelessWidget {
   const ItemCard(
       {super.key,
       required this.itemID,
-      required this.onDelete,
-      required this.passedModel});
+      required this.passedModel,
+      required this.subCategory});
 
   final String itemID;
-  final VoidCallback onDelete;
+
   final CardItemModel passedModel;
+
+  final String subCategory;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: Dismissible(
-        background: DeleteAndEditActions(),
+        movementDuration: Duration(seconds: 3),
+        direction: DismissDirection.startToEnd,
+        background: DeleteAndEditActions(
+          subCategory: subCategory,
+        ),
         key: ValueKey(itemID),
-        onDismissed: (direction) {
-          onDelete();
-        },
+        confirmDismiss: (direction) async => false,
         child: Container(
             width: 379,
             height: 123,

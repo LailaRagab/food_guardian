@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
+import 'package:food_guardian/core/widgets/bg_empty_screens_text.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view/register_widgets/auth_snack_bar.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/item_card.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_cubit.dart';
@@ -19,43 +20,43 @@ class InventoryCategoryBody extends StatelessWidget {
     Future.microtask(() => BlocProvider.of<InventoryCategoryCubit>(context)
         .readStoredItemsInInventoryCategory(subCollection));
     return BlocConsumer<InventoryCategoryCubit, InventoryCategoryStates>(
-      listener: (context, Object? state) {
-        if (state is LoadingState) {
+      listener: (context, state) {
+        if (state is InventoryLoadingState) {
           isLoaded = true;
         }
-        if (state is AvailableDataState) {
+        if (state is InventoryAvailableDataState) {
           itemsList = state.itemsList2;
           isLoaded = false;
         }
-        if (state is ErrorState) {
+        if (state is InventoryErrorState) {
           snackBar(context, state.errorMessage);
           isLoaded = false;
         }
+        if (state is InventoryItemFailedToDeletedState) {
+          snackBar(context, state.errorMessage);
+        }
       },
       builder: (context, state) {
-        if (state is AvailableDataState) {
+        if (state is InventoryAvailableDataState ||
+            state is InventoryItemDeletedState) {
           return ModalProgressHUD(
             inAsyncCall: isLoaded,
             child: ListView.builder(
                 itemCount: itemsList.length,
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: (context, int index) {
                   return ItemCard(
-                    itemID: '',
-                    onDelete: () {},
+                    itemID: InventoryCategoryCubit.docID!,
                     passedModel: itemsList[index],
+                    subCategory: subCollection,
                   );
                 }),
           );
         }
-        if (state is EmptyState) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Center(
-              child: Text(
-                  "Category is empty now ........... when you add new item it will appear here. ",
-                  style: AppFonts.fontGrey20),
-            ),
-          );
+        if (state is InventoryEmptyState) {
+          return BgEmptyScreensText(
+              top: 0,
+              text:
+                  "Category is empty now ........... when you add new item it will appear here. ");
         }
         return const Center(child: CircularProgressIndicator());
       },

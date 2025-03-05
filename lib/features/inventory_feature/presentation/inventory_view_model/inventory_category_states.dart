@@ -4,16 +4,23 @@ class InventoryCategoryStates {}
 
 class InitialState extends InventoryCategoryStates {}
 
-class LoadingState extends InventoryCategoryStates {}
+class InventoryLoadingState extends InventoryCategoryStates {}
 
-class AvailableDataState extends InventoryCategoryStates {
+class InventoryAvailableDataState extends InventoryCategoryStates {
   List<CardItemModel> itemsList2;
-  AvailableDataState({required this.itemsList2});
+  InventoryAvailableDataState({required this.itemsList2});
 }
 
-class EmptyState extends InventoryCategoryStates {}
+class InventoryEmptyState extends InventoryCategoryStates {}
 
-class ErrorState extends InventoryCategoryStates {
+class InventoryErrorState extends InventoryCategoryStates {
   String errorMessage;
-  ErrorState({required this.errorMessage});
+  InventoryErrorState({required this.errorMessage});
+}
+
+class InventoryItemDeletedState extends InventoryCategoryStates {}
+
+class InventoryItemFailedToDeletedState extends InventoryCategoryStates {
+  String errorMessage;
+  InventoryItemFailedToDeletedState({required this.errorMessage});
 }
