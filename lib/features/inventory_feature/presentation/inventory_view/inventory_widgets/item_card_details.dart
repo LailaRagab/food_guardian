@@ -27,32 +27,30 @@ class ItemCardDetails extends StatelessWidget {
         SizedBox(
           width: 10,
         ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Name: ${model.itemName}",
-                style: AppFonts.font16,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                "Quantity: ${model.itemQuantity}",
-                style: AppFonts.font16,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                "Expiration date: ${model.itemExpirationDate.dateFormate()}",
-                style: AppFonts.font16
-                    .copyWith(color: AppColors.kDarkGrey, fontSize: 12),
-              ),
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Name: ${model.itemName}",
+              style: AppFonts.font16,
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              "Quantity: ${model.itemQuantity}",
+              style: AppFonts.font16,
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              "Expiration date: ${model.itemExpirationDate.dateFormate()}",
+              style: AppFonts.font16
+                  .copyWith(color: AppColors.kDarkGrey, fontSize: 12),
+            ),
+          ],
         ),
         SizedBox(
           width: 70,
