@@ -76,7 +76,7 @@ class DeleteAndEditDetails extends StatelessWidget {
             InkWell(
               onTap: () {
                 BlocProvider.of<InventoryCategoryCubit>(context)
-                    .editItem(subCategory, context, currentItem);
+                    .editItem(subCategory, context);
               },
               child: Icon(
                 size: 30,

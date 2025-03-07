@@ -52,25 +52,20 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
     }
   }
 
-  void editItem(
-      String subCollection, BuildContext context, CardItemModel currentItem) {
+  void editItem(String subCollection, BuildContext context) {
     FirebaseFirestore.instance
         .collection(CardItemModel.collectionName)
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection(subCollection)
         .doc(docID)
-        .update({
-      "name": updatedName,
-      "quantity": udatedQuantity,
-      "exDate": updatedExDate,
-    });
+        .update({});
     showModalBottomSheet(
       useSafeArea: true,
       isScrollControlled: true,
       backgroundColor: AppColors.kTransparent,
       context: context,
       builder: (context) {
-        return CustomAddManuallyBottomSheet(currentItem: currentItem);
+        return CustomAddManuallyBottomSheet();
       },
     );
   }
