@@ -14,7 +14,12 @@ class CustomAddingItemTextField extends StatelessWidget {
   final Function(String) onSubmitted;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (anyInputs) {
+        if (anyInputs!.isEmpty) {
+          return "Field is required";
+        }
+      },
       onChanged: onSubmitted,
       cursorColor: AppColors.kHintText,
       decoration: InputDecoration(

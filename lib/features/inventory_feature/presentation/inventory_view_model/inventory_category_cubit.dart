@@ -1,19 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_states.dart';
 
-import '../../../../core/utils/assets/colors.dart';
 import '../../models/card_itme_model.dart';
-import '../inventory_view/inventory_widgets/custom_add_manually_bottom_sheet.dart';
 
 class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
   InventoryCategoryCubit() : super(InitialState());
-  static String? docID;
 
   void readStoredItemsInInventoryCategory(String subCollection) {
-    emit(InitialState());
     emit(InventoryLoadingState());
     CollectionReference inventoryCollection = FirebaseFirestore.instance
         .collection(CardItemModel.collectionName)
@@ -29,7 +24,6 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
         List<CardItemModel> itemsList1 = [];
         for (var doc in event.docs) {
           itemsList1.add(CardItemModel.fromJson(doc));
-          docID = doc.id;
         }
         emit(InventoryAvailableDataState(itemsList2: itemsList1));
       });
@@ -38,7 +32,7 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
     }
   }
 
-  void deleteItem(String subCollection) {
+  void deleteItem(String subCollection, String docID) {
     try {
       FirebaseFirestore.instance
           .collection(CardItemModel.collectionName)
@@ -52,26 +46,24 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
     }
   }
 
-  void editItem(
-      String subCollection, BuildContext context, CardItemModel currentItem) {
-    FirebaseFirestore.instance
-        .collection(CardItemModel.collectionName)
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection(subCollection)
-        .doc(docID)
-        .update({
-      "name": updatedName,
-      "quantity": udatedQuantity,
-      "exDate": updatedExDate,
-    });
-    showModalBottomSheet(
-      useSafeArea: true,
-      isScrollControlled: true,
-      backgroundColor: AppColors.kTransparent,
-      context: context,
-      builder: (context) {
-        return CustomAddManuallyBottomSheet(currentItem: currentItem);
-      },
-    );
+  Future<void> updateItem(String subCollection, String docID,
+      String updatedName, String updatedQuantity, updatedExDate) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(CardItemModel.collectionName)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(subCollection)
+          .doc(docID)
+          .update({
+        "name": updatedName,
+        "quantity": updatedQuantity,
+        "exDate": updatedExDate,
+      });
+      emit(InventoryItemEditedState());
+      readStoredItemsInInventoryCategory(subCollection); // Refresh data
+    } catch (e) {
+      emit(InventoryItemFailedToEditState(
+          errorMessage: "Failed to update item"));
+    }
   }
 }

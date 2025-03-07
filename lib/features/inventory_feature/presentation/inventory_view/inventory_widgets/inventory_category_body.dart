@@ -35,6 +35,12 @@ class InventoryCategoryBody extends StatelessWidget {
         if (state is InventoryItemFailedToDeletedState) {
           snackBar(context, state.errorMessage);
         }
+        if (state is InventoryItemFailedToEditState) {
+          snackBar(context, state.errorMessage);
+        }
+        if (state is InventoryItemEditedState) {
+          isLoaded = false;
+        }
       },
       builder: (context, state) {
         if (state is InventoryAvailableDataState ||
@@ -45,7 +51,7 @@ class InventoryCategoryBody extends StatelessWidget {
                 itemCount: itemsList.length,
                 itemBuilder: (context, int index) {
                   return ItemCard(
-                    itemID: InventoryCategoryCubit.docID!,
+                    docID: itemsList[index].docIDForDeleteAndEdit,
                     passedModel: itemsList[index],
                     subCategory: subCollection,
                   );

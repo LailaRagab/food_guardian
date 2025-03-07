@@ -10,11 +10,11 @@ import '../../../../../core/utils/assets/colors.dart';
 class ItemCard extends StatelessWidget {
   const ItemCard(
       {super.key,
-      required this.itemID,
+      required this.docID,
       required this.passedModel,
       required this.subCategory});
 
-  final String itemID;
+  final String docID;
 
   final CardItemModel passedModel;
 
@@ -28,8 +28,10 @@ class ItemCard extends StatelessWidget {
         direction: DismissDirection.startToEnd,
         background: DeleteAndEditActions(
           subCategory: subCategory,
+          docID: docID,
+          item: passedModel,
         ),
-        key: ValueKey(itemID),
+        key: ValueKey(docID),
         confirmDismiss: (direction) async => false,
         child: Container(
             width: 379,

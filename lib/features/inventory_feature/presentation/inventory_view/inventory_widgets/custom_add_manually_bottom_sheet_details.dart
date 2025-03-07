@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_adding_item_text_field.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_date_picker.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_drop_down_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_small_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_upload_image_button.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/show_my_date_picker_widget.dart';
 
 import '../../../../../core/utils/assets/fonts.dart';
 
@@ -22,7 +22,7 @@ class CustomAddManuallyBottomSheetDetails extends StatefulWidget {
 
 class _CustomAddManuallyBottomSheetDetailsState
     extends State<CustomAddManuallyBottomSheetDetails> {
-  DateTime selectedDate = DateTime.now();
+  DateTime? selectedExpirationDate;
 
   String name = "";
 
@@ -30,85 +30,76 @@ class _CustomAddManuallyBottomSheetDetailsState
 
   String category = "Fridge";
 
+  GlobalKey<FormState> formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Add new item",
-                style: AppFonts.fontBlack18,
-              )
-            ],
-          ),
-          CustomAddingItemTextField(
-            hint: 'Name',
-            onSubmitted: (nInput) {
-              setState(() {
-                name = nInput;
-              });
-            },
-          ),
-          CustomAddingItemTextField(
-            hint: "Quantity",
-            onSubmitted: (qInput) {
-              setState(() {
-                quantity = qInput;
-              });
-            },
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          CustomDatePicker(
-            onTap: () {
-              showMyDatePicker(context);
-            },
-            date: selectedDate,
-          ),
-          const SizedBox(height: 20),
-          CustomDropDownButton(
-            selectedCategory: category,
-            onChanged: (String? value) {
-              setState(() {
-                category = value!;
-              });
-            },
-          ),
-          const SizedBox(height: 110),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomUploadImageButton(),
-              const SizedBox(width: 30),
-              CustomSmallButton(onTap: () {
-                buildAddItemsToFirestore();
-              }),
-            ],
-          ),
-        ],
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Add new item",
+                  style: AppFonts.fontBlack18,
+                )
+              ],
+            ),
+            CustomAddingItemTextField(
+              hint: 'Name',
+              onSubmitted: (nInput) {
+                setState(() {
+                  name = nInput;
+                });
+              },
+            ),
+            CustomAddingItemTextField(
+              hint: "Quantity",
+              onSubmitted: (qInput) {
+                setState(() {
+                  quantity = qInput;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            CustomDropDownButton(
+              selectedCategory: category,
+              onChanged: (String? value) {
+                setState(() {
+                  category = value!;
+                });
+              },
+            ),
+            SizedBox(
+              height: 115,
+            ),
+            ShowMyDatePickerWidget(
+              onDateSelected: (DateTime value) {
+                selectedExpirationDate = value;
+              },
+            ),
+            const SizedBox(height: 100),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomUploadImageButton(),
+                const SizedBox(width: 30),
+                CustomSmallButton(onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    buildAddItemsToFirestore();
+                  }
+                }),
+              ],
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  void showMyDatePicker(BuildContext context) async {
-    selectedDate = await showDatePicker(
-            context: context,
-            initialDate: selectedDate,
-            firstDate: DateTime.now(),
-            lastDate: DateTime.now().add(Duration(days: 365))) ??
-        selectedDate;
-
-    if (selectedDate != null) {
-      setState(() {
-        selectedDate = selectedDate;
-      });
-    }
   }
 
   void buildAddItemsToFirestore() {
@@ -122,7 +113,7 @@ class _CustomAddManuallyBottomSheetDetailsState
       docIDForDeleteAndEdit: documentReference.id,
       itemName: name,
       itemQuantity: quantity,
-      itemExpirationDate: selectedDate,
+      itemExpirationDate: selectedExpirationDate!,
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);

@@ -48,8 +48,7 @@ class ItemCardDetails extends StatelessWidget {
               ),
               Text(
                 "Expiration date: ${model.itemExpirationDate.dateFormate()}",
-                style: AppFonts.font16
-                    .copyWith(color: AppColors.kDarkGrey, fontSize: 12),
+                style: AppFonts.font12,
               ),
             ],
           ),

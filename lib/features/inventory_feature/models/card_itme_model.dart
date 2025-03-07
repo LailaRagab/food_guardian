@@ -19,8 +19,8 @@ class CardItemModel {
     final data = doc.data() as Map<String, dynamic>; // Extract data properly
     return CardItemModel(
       docIDForDeleteAndEdit: doc.id, // Use document ID
-      itemName: data["name"] ?? "",
-      itemQuantity: data["quantity"] ?? "",
+      itemName: data["name"],
+      itemQuantity: data["quantity"],
       itemExpirationDate:
           (data["exDate"] as Timestamp).toDate(), // Convert Firestore Timestamp
     );

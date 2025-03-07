@@ -18,6 +18,7 @@ class CustomDatePicker extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        height: 35,
         width: 150,
         decoration: BoxDecoration(
             color: AppColors.kUploadButtonBg,

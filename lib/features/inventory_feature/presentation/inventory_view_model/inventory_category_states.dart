@@ -24,3 +24,10 @@ class InventoryItemFailedToDeletedState extends InventoryCategoryStates {
   String errorMessage;
   InventoryItemFailedToDeletedState({required this.errorMessage});
 }
+
+class InventoryItemEditedState extends InventoryCategoryStates {}
+
+class InventoryItemFailedToEditState extends InventoryCategoryStates {
+  String errorMessage;
+  InventoryItemFailedToEditState({required this.errorMessage});
+}
