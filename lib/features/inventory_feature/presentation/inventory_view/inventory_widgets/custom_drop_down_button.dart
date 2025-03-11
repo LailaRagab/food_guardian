@@ -6,21 +6,25 @@ class CustomDropDownButton extends StatelessWidget {
   CustomDropDownButton({
     super.key,
     required this.onChanged,
-    required this.selectedCategory,
   });
 
   final ValueChanged<String?> onChanged;
 
-  final String selectedCategory;
-
   @override
   Widget build(BuildContext context) {
-    return DropdownButton(
+    return DropdownButtonFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Field is required";
+        }
+      },
+      hint: Text(
+        "Select Category",
+        style: AppFonts.font20HintStyle,
+      ),
       onChanged: onChanged,
       dropdownColor: AppColors.kWhite,
-      menuWidth: 100,
       iconEnabledColor: AppColors.kPrimary,
-      value: selectedCategory,
       items: [
         DropdownMenuItem(
           value: "Fridge",

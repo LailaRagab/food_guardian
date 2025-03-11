@@ -6,7 +6,8 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_drop_down_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_small_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_upload_image_button.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/show_my_date_picker_widget.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_show_my_date_picker_widget.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/write_on_firestore_logic.dart';
 
 import '../../../../../core/utils/assets/fonts.dart';
 
@@ -24,11 +25,11 @@ class _CustomAddManuallyBottomSheetDetailsState
     extends State<CustomAddManuallyBottomSheetDetails> {
   DateTime? selectedExpirationDate;
 
-  String name = "";
+  String? name;
 
-  String quantity = "";
+  String? quantity;
 
-  String category = "Fridge";
+  late String category;
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -57,6 +58,7 @@ class _CustomAddManuallyBottomSheetDetailsState
                   name = nInput;
                 });
               },
+              getName: name,
             ),
             CustomAddingItemTextField(
               hint: "Quantity",
@@ -66,24 +68,19 @@ class _CustomAddManuallyBottomSheetDetailsState
                 });
               },
             ),
-            const SizedBox(height: 20),
+            CustomShowMyDatePickerWidget(
+              onDateSelected: (DateTime value) {
+                selectedExpirationDate = value;
+              },
+            ),
             CustomDropDownButton(
-              selectedCategory: category,
               onChanged: (String? value) {
                 setState(() {
                   category = value!;
                 });
               },
             ),
-            SizedBox(
-              height: 115,
-            ),
-            ShowMyDatePickerWidget(
-              onDateSelected: (DateTime value) {
-                selectedExpirationDate = value;
-              },
-            ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 130),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -91,7 +88,8 @@ class _CustomAddManuallyBottomSheetDetailsState
                 const SizedBox(width: 30),
                 CustomSmallButton(onTap: () {
                   if (formKey.currentState!.validate()) {
-                    buildAddItemsToFirestore();
+                    WriteOnFireStoreLogic().buildAddItemsToFirestore(context,
+                        category, name!, quantity, selectedExpirationDate!);
                   }
                 }),
               ],
@@ -100,23 +98,5 @@ class _CustomAddManuallyBottomSheetDetailsState
         ),
       ),
     );
-  }
-
-  void buildAddItemsToFirestore() {
-    CollectionReference inventoryCollection = FirebaseFirestore.instance
-        .collection(CardItemModel.collectionName)
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection(category);
-
-    DocumentReference documentReference = inventoryCollection.doc();
-    CardItemModel cardItemModel = CardItemModel(
-      docIDForDeleteAndEdit: documentReference.id,
-      itemName: name,
-      itemQuantity: quantity,
-      itemExpirationDate: selectedExpirationDate!,
-    );
-    documentReference.set(cardItemModel.toJson());
-    Navigator.pop(context);
-    // inventoryCollection.add(cardItemModel.toJson());
   }
 }

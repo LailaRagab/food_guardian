@@ -8,8 +8,9 @@ class CustomAddingItemTextField extends StatelessWidget {
     super.key,
     required this.hint,
     required this.onSubmitted,
+    this.getName,
   });
-
+  final String? getName;
   final String hint;
   final Function(String) onSubmitted;
   @override
@@ -18,6 +19,9 @@ class CustomAddingItemTextField extends StatelessWidget {
       validator: (anyInputs) {
         if (anyInputs!.isEmpty) {
           return "Field is required";
+        }
+        if (getName != null && !RegExp(r'^[a-zA-Z\s]+$').hasMatch(getName!)) {
+          return 'Name can only contain letters';
         }
       },
       onChanged: onSubmitted,
