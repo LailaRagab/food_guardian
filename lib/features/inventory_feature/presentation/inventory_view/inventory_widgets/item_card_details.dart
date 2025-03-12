@@ -1,13 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/on_pressed_gallery_and_camera_picker.dart';
 
 import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
 import '../../../../../core/utils/assets/images.dart';
 
 class ItemCardDetails extends StatelessWidget {
-  const ItemCardDetails({super.key, required this.model});
+  ItemCardDetails({super.key, required this.model});
 
   final CardItemModel model;
 
@@ -57,7 +60,7 @@ class ItemCardDetails extends StatelessWidget {
           width: 70,
         ),
         Image(
-          image: AssetImage(AppImages.logoIcon),
+          image: pickedImage == null ? null : FileImage(pickedImage!),
           width: 77,
           height: 70,
         ),

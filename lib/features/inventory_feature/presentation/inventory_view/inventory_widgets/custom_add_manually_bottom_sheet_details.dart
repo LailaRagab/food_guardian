@@ -1,7 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_adding_item_text_field.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_drop_down_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_small_button.dart';
@@ -12,7 +9,7 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import '../../../../../core/utils/assets/fonts.dart';
 
 class CustomAddManuallyBottomSheetDetails extends StatefulWidget {
-  CustomAddManuallyBottomSheetDetails({
+  const CustomAddManuallyBottomSheetDetails({
     Key? key,
   }) : super(key: key);
 

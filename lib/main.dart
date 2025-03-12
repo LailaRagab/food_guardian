@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart'; //import for using firebase
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,11 +16,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const FoodGuardian());
+  runApp(FoodGuardian());
 }
 
 class FoodGuardian extends StatelessWidget {
-  const FoodGuardian({super.key});
+  FoodGuardian({super.key});
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

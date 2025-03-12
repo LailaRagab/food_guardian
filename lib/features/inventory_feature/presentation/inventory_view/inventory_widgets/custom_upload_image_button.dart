@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/assets/colors.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_upload_photo_alert_dialog.dart';
 
 class CustomUploadImageButton extends StatelessWidget {
   const CustomUploadImageButton({super.key});
@@ -10,8 +11,13 @@ class CustomUploadImageButton extends StatelessWidget {
     return Material(
       color: AppColors.kTransparent,
       child: InkWell(
-        onTap: () {},
-        // borderRadius: BorderRadius.all(Radius.circular(35)),
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return CustomUploadPhotoAlertDialog();
+              });
+        },
         child: Container(
           width: 120,
           height: 40,
