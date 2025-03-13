@@ -5,8 +5,13 @@ import 'package:flutter/material.dart';
 import '../../models/card_itme_model.dart';
 
 class WriteOnFireStoreLogic {
-  void buildAddItemsToFirestore(BuildContext context, String category,
-      String name, quantity, DateTime selectedExpirationDate) {
+  void buildAddItemsToFirestore(
+      BuildContext context,
+      String category,
+      String name,
+      quantity,
+      DateTime selectedExpirationDate,
+      FileImage? image) {
     CollectionReference inventoryCollection = FirebaseFirestore.instance
         .collection(CardItemModel.collectionName)
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -18,6 +23,7 @@ class WriteOnFireStoreLogic {
       itemName: name,
       itemQuantity: quantity!,
       itemExpirationDate: selectedExpirationDate,
+      itemImage: image,
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);

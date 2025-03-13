@@ -16,13 +16,14 @@ class UploadPhoto {
   static Future<File?> uploadGalleryPicker() async {
     PermissionStatus status;
     if (Platform.isAndroid) {
-      final andriodInfo = await DeviceInfoPlugin().androidInfo;
-      if (andriodInfo.version.sdkInt <= 32) {
+      final androidInfo = await DeviceInfoPlugin().androidInfo;
+      if (androidInfo.version.sdkInt <= 32) {
         status = await Permission.storage.request();
+      } else {
+        status = await Permission.photos.request();
       }
-      status = await Permission.phone.request();
     } else {
-      status = await Permission.phone.request();
+      status = await Permission.photos.request();
     }
     if (status.isGranted) {
       var image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -30,5 +31,6 @@ class UploadPhoto {
         return File(image.path);
       }
     }
+    return null;
   }
 }

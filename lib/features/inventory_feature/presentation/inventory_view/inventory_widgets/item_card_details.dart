@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
@@ -60,10 +58,10 @@ class ItemCardDetails extends StatelessWidget {
           width: 70,
         ),
         Image(
-          image: pickedImage == null ? null : FileImage(pickedImage!),
+          image: model.itemImage ?? AssetImage(AppImages.logoIcon),
           width: 77,
           height: 70,
-        ),
+        )
       ],
     );
   }

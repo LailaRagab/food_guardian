@@ -4,7 +4,9 @@ import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_upload_photo_alert_dialog.dart';
 
 class CustomUploadImageButton extends StatelessWidget {
-  const CustomUploadImageButton({super.key});
+  CustomUploadImageButton({super.key, required this.onImagePicked});
+
+  Function(FileImage? taked) onImagePicked;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,9 @@ class CustomUploadImageButton extends StatelessWidget {
           showDialog(
               context: context,
               builder: (context) {
-                return CustomUploadPhotoAlertDialog();
+                return CustomUploadPhotoAlertDialog(
+                  onImagePicked: onImagePicked,
+                );
               });
         },
         child: Container(

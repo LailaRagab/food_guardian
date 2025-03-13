@@ -10,8 +10,12 @@ import '../../../../../core/utils/assets/fonts.dart';
 import 'custom_alert_dialog_text_button_photo.dart';
 
 class CustomUploadPhotoAlertDialog extends StatefulWidget {
-  CustomUploadPhotoAlertDialog({super.key});
+  CustomUploadPhotoAlertDialog({
+    super.key,
+    required this.onImagePicked,
+  });
 
+  Function(FileImage?) onImagePicked;
   @override
   State<CustomUploadPhotoAlertDialog> createState() =>
       _CustomUploadPhotoAlertDialogState();
@@ -19,8 +23,8 @@ class CustomUploadPhotoAlertDialog extends StatefulWidget {
 
 class _CustomUploadPhotoAlertDialogState
     extends State<CustomUploadPhotoAlertDialog> {
-  File? temp;
-  File? pickedImage;
+  OnPressedGalleryAndCameraPicker picker = OnPressedGalleryAndCameraPicker();
+  FileImage? takedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +44,12 @@ class _CustomUploadPhotoAlertDialogState
                 size: 40,
               ),
               onPressed: () async {
-                temp = await UploadPhoto.uploadGalleryPicker();
-                if (temp != null) {
-                  pickedImage = temp;
-                }
-                setState(() {});
+                await picker.onPressedGalleryPicker();
+                setState(() {
+                  takedImage = picker.image;
+                });
+                widget.onImagePicked(takedImage);
+                Navigator.pop(context);
               },
             ),
             CustomUploadPhotoAptionsText(text: "Gallery"),
@@ -58,11 +63,11 @@ class _CustomUploadPhotoAlertDialogState
                 size: 40,
               ),
               onPressed: () async {
-                temp = await UploadPhoto.uploadGalleryPicker();
-                if (temp != null) {
-                  pickedImage = temp;
-                }
-                setState(() {});
+                await picker.onPressedCameraPicker();
+                setState(() {
+                  takedImage = picker.image;
+                });
+                Navigator.pop(context);
               },
             ),
             CustomUploadPhotoAptionsText(text: "Camera"),
@@ -70,6 +75,5 @@ class _CustomUploadPhotoAlertDialogState
         )
       ],
     );
-    ;
   }
 }

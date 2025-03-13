@@ -13,7 +13,7 @@ import 'package:food_guardian/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const FoodGuardian());
+    await tester.pumpWidget(FoodGuardian());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
