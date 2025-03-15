@@ -16,9 +16,6 @@ class ItemCardDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          width: 15,
-        ),
         VerticalDivider(
           indent: 25,
           endIndent: 25,
@@ -55,12 +52,17 @@ class ItemCardDetails extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 70,
+          width: 20,
         ),
-        Image(
-          image: model.itemImage ?? AssetImage(AppImages.logoIcon),
-          width: 77,
-          height: 70,
+        Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: model.itemImage ?? AssetImage(AppImages.logoIcon),
+              )),
         )
       ],
     );

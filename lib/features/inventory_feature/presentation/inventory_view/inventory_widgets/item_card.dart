@@ -39,8 +39,11 @@ class ItemCard extends StatelessWidget {
             decoration: BoxDecoration(
                 color: AppColors.kItemCardBg,
                 borderRadius: BorderRadius.all(Radius.circular(35))),
-            child: ItemCardDetails(
-              model: passedModel,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: ItemCardDetails(
+                model: passedModel,
+              ),
             )),
       ),
     );
