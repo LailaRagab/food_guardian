@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_add_manually_bottom_sheet.dart';
 
+import 'package:go_router/go_router.dart';
+
 import '../../../../../core/utils/assets/colors.dart';
 
 class AddButton extends StatelessWidget {
@@ -37,10 +39,12 @@ class AddButton extends StatelessWidget {
             shape: CircleBorder(),
             backgroundColor: AppColors.kPrimary,
             child: Icon(
-              Icons.qr_code_scanner,
+              Icons.barcode_reader,
               color: AppColors.kWhite,
             ),
-            onTap: () {})
+            onTap: () {
+              GoRouter.of(context).push("/scan");
+            })
       ],
     );
   }
