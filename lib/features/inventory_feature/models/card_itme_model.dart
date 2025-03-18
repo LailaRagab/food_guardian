@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CardItemModel {
@@ -10,6 +11,7 @@ class CardItemModel {
   final String itemQuantity;
   final DateTime itemExpirationDate;
   final FileImage? itemImage;
+  final String? itemBarcode;
 
   CardItemModel({
     required this.itemName,
@@ -17,20 +19,21 @@ class CardItemModel {
     required this.itemExpirationDate,
     required this.docIDForDeleteAndEdit,
     required this.itemImage,
+    required this.itemBarcode,
   });
 
   // Updated factory constructor to accept a QueryDocumentSnapshot directly
   factory CardItemModel.fromJson(QueryDocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>; // Extract data properly
     return CardItemModel(
-      docIDForDeleteAndEdit: doc.id, // Use document ID
-      itemName: data["name"],
-      itemQuantity: data["quantity"],
-      itemExpirationDate: (data["exDate"] as Timestamp).toDate(),
-      itemImage: data["image"] != null
-          ? FileImage(File(data["image"])) // Convert path to FileImage
-          : null,
-    );
+        docIDForDeleteAndEdit: doc.id, // Use document ID
+        itemName: data["name"],
+        itemQuantity: data["quantity"],
+        itemExpirationDate: (data["exDate"] as Timestamp).toDate(),
+        itemImage: data["image"] != null
+            ? FileImage(File(data["image"])) // Convert path to FileImage
+            : null,
+        itemBarcode: data["barcode"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +43,7 @@ class CardItemModel {
       "quantity": itemQuantity,
       "exDate": itemExpirationDate,
       "image": itemImage != null ? itemImage!.file.path : null,
+      "barcode": itemBarcode,
     };
   }
 }

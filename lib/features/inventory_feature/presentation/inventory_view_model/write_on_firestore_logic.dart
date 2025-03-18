@@ -11,7 +11,8 @@ class WriteOnFireStoreLogic {
       String name,
       quantity,
       DateTime selectedExpirationDate,
-      FileImage? image) {
+      FileImage? image,
+      String? barcode) {
     CollectionReference inventoryCollection = FirebaseFirestore.instance
         .collection(CardItemModel.collectionName)
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -24,6 +25,7 @@ class WriteOnFireStoreLogic {
       itemQuantity: quantity!,
       itemExpirationDate: selectedExpirationDate,
       itemImage: image,
+      itemBarcode: barcode,
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);

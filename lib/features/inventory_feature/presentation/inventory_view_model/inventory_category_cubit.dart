@@ -25,6 +25,7 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
         for (var doc in event.docs) {
           itemsList1.add(CardItemModel.fromJson(doc));
         }
+
         emit(InventoryAvailableDataState(itemsList2: itemsList1));
       });
     } on Exception catch (e) {

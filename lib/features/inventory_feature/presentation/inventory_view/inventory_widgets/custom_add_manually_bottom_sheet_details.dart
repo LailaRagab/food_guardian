@@ -100,7 +100,8 @@ class _CustomAddManuallyBottomSheetDetailsState
                         name!,
                         quantity,
                         selectedExpirationDate!,
-                        image);
+                        image,
+                        null);
                   }
                 }),
               ],
