@@ -94,7 +94,7 @@ class _CustomAddManuallyBottomSheetDetailsState
                 const SizedBox(width: 30),
                 CustomSmallButton(onTap: () {
                   if (formKey.currentState!.validate()) {
-                    WriteOnFireStoreLogic().buildAddItemsToFirestore(
+                    WriteOnFireStoreLogic.buildAddItemsToFirestore(
                         context,
                         category,
                         name!,

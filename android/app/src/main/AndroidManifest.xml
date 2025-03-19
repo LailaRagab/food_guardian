@@ -8,9 +8,6 @@
 
 
     <application
-        <application
-            android:enableOnBackInvokedCallback="true"
-        ...>
 
         android:label="food_guardian"
         android:name="${applicationName}"

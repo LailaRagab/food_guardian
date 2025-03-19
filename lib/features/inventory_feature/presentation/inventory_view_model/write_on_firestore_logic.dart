@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../models/card_itme_model.dart';
 
 class WriteOnFireStoreLogic {
-  void buildAddItemsToFirestore(
+   static void buildAddItemsToFirestore(
       BuildContext context,
       String category,
       String name,
