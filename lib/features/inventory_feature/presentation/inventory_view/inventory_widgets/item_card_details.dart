@@ -57,12 +57,13 @@ class ItemCardDetails extends StatelessWidget {
         Container(
           width: 80,
           height: 80,
+          child: Image.network(model.itemImageAPI ?? "", fit: BoxFit.fill),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
+            borderRadius: BorderRadius.circular(20),
+            image: DecorationImage(
                 fit: BoxFit.fill,
-                image: model.itemImage ?? AssetImage(AppImages.logoIcon),
-              )),
+                image: model.itemImage ?? AssetImage(AppImages.logoIcon)),
+          ),
         )
       ],
     );

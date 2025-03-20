@@ -12,15 +12,16 @@ class CardItemModel {
   final DateTime itemExpirationDate;
   final FileImage? itemImage;
   final String? itemBarcode;
+  final String? itemImageAPI;
 
-  CardItemModel({
-    required this.itemName,
-    required this.itemQuantity,
-    required this.itemExpirationDate,
-    required this.docIDForDeleteAndEdit,
-    required this.itemImage,
-    required this.itemBarcode,
-  });
+  CardItemModel(
+      {required this.itemName,
+      required this.itemQuantity,
+      required this.itemExpirationDate,
+      required this.docIDForDeleteAndEdit,
+      required this.itemImage,
+      required this.itemBarcode,
+      required this.itemImageAPI});
 
   // Updated factory constructor to accept a QueryDocumentSnapshot directly
   factory CardItemModel.fromJson(QueryDocumentSnapshot doc) {
@@ -33,7 +34,8 @@ class CardItemModel {
         itemImage: data["image"] != null
             ? FileImage(File(data["image"])) // Convert path to FileImage
             : null,
-        itemBarcode: data["barcode"]);
+        itemBarcode: data["barcode"],
+        itemImageAPI: data["imageAPI"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +46,7 @@ class CardItemModel {
       "exDate": itemExpirationDate,
       "image": itemImage != null ? itemImage!.file.path : null,
       "barcode": itemBarcode,
+      "imageAPI": itemImageAPI
     };
   }
 }

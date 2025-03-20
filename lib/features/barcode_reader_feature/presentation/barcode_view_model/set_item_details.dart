@@ -11,16 +11,15 @@ class SetItemDetails {
       BuildContext context,
       DateTime selectedExpirationDate) async {
     try {
-      if (matchedItem != null) {
-        WriteOnFireStoreLogic.buildAddItemsToFirestore(
-            context,
-            category,
-            matchedItem.itemName,
-            matchedItem.itemQuantity,
-            selectedExpirationDate,
-            matchedItem.itemImage,
-            matchedItem.itemBarcode);
-      }
+      WriteOnFireStoreLogic.buildAddItemsToFirestore(
+          context,
+          category,
+          matchedItem.itemName,
+          matchedItem.itemQuantity,
+          selectedExpirationDate,
+          matchedItem.itemImage,
+          matchedItem.itemBarcode,
+          matchedItem.itemImageAPI);
     } on Exception catch (e) {
       snackBar(context, "Item not stored please try again!");
     }

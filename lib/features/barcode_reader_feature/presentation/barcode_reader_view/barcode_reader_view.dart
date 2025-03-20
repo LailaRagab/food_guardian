@@ -19,10 +19,14 @@ class ScanViewState extends State<ScanView> {
     final List<Barcode> barcodes = capture.barcodes;
     if (barcodes.isNotEmpty) {
       final String code = barcodes.first.rawValue!;
-      setState(() {
-        barcode = code;
-      });
-
+      if (mounted) {
+        setState(() {
+          barcode = code;
+        });
+      }
+      if (mounted) {
+        cameraController.stop();
+      }
       await showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -31,24 +35,18 @@ class ScanViewState extends State<ScanView> {
               setState(() {
                 selectedExpirationDate = value;
               });
+
               Navigator.pop(context);
             },
           ),
         ),
       );
-      cameraController.stop();
-
-      if (selectedExpirationDate != null) {
+      if (selectedExpirationDate != null && barcode != null) {
         SearchOnFirestore.searchOnFirestore(
             barcode!, context, selectedExpirationDate!);
       }
     }
-  }
-
-  @override
-  void dispose() {
-    cameraController.dispose(); // Stop the scanner properly
-    super.dispose();
+    Navigator.pop(context);
   }
 
   @override
@@ -62,5 +60,11 @@ class ScanViewState extends State<ScanView> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose(); // Stop the scanner properly
+    super.dispose();
   }
 }
