@@ -7,46 +7,44 @@ import 'package:flutter/material.dart';
 class CardItemModel {
   static String collectionName = "InventoryCollection";
   final String docIDForDeleteAndEdit;
-  final String itemName;
-  final String itemQuantity;
+  final String? itemName;
+  final String? itemQuantity;
   final DateTime itemExpirationDate;
-  final FileImage? itemImage;
+  final String? itemImage;
   final String? itemBarcode;
-  final String? itemImageAPI;
+  // final String? itemImageAPI;
 
-  CardItemModel(
-      {required this.itemName,
-      required this.itemQuantity,
-      required this.itemExpirationDate,
-      required this.docIDForDeleteAndEdit,
-      required this.itemImage,
-      required this.itemBarcode,
-      required this.itemImageAPI});
+  CardItemModel({
+    required this.itemName,
+    required this.itemQuantity,
+    required this.itemExpirationDate,
+    required this.docIDForDeleteAndEdit,
+    required this.itemImage,
+    required this.itemBarcode,
+  });
 
   // Updated factory constructor to accept a QueryDocumentSnapshot directly
   factory CardItemModel.fromJson(QueryDocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>; // Extract data properly
     return CardItemModel(
-        docIDForDeleteAndEdit: doc.id, // Use document ID
-        itemName: data["name"],
-        itemQuantity: data["quantity"],
-        itemExpirationDate: (data["exDate"] as Timestamp).toDate(),
-        itemImage: data["image"] != null
-            ? FileImage(File(data["image"])) // Convert path to FileImage
-            : null,
-        itemBarcode: data["barcode"],
-        itemImageAPI: data["imageAPI"]);
+      docIDForDeleteAndEdit: doc.id, // Use document ID
+      itemName: data["name"],
+      itemQuantity: data["quantity"],
+      itemExpirationDate: (data["exDate"] as Timestamp).toDate(),
+      itemImage: data["image"],
+      itemBarcode: data["barcode"],
+      // itemImageAPI: data["imageAPI"]
+    );
   }
 
   Map<String, dynamic> toJson() {
     return {
       "docID": docIDForDeleteAndEdit,
-      "name": itemName,
-      "quantity": itemQuantity,
+      "name": itemName ?? null,
+      "quantity": itemQuantity ?? null,
       "exDate": itemExpirationDate,
-      "image": itemImage != null ? itemImage!.file.path : null,
+      "image": itemImage != null ? itemImage : null,
       "barcode": itemBarcode,
-      "imageAPI": itemImageAPI
     };
   }
 }

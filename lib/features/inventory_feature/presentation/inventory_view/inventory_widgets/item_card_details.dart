@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
@@ -57,13 +59,16 @@ class ItemCardDetails extends StatelessWidget {
         Container(
           width: 80,
           height: 80,
-          child: Image.network(model.itemImageAPI ?? "", fit: BoxFit.fill),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: model.itemImage ?? AssetImage(AppImages.logoIcon)),
           ),
+          child: model.itemImage != null
+              ? model.itemImage!.startsWith('http')
+                  ? Image.network(model
+                      .itemImage!) // If it starts with 'http', treat it as a URL
+                  : Image.file(File(
+                      model.itemImage!)) // Otherwise, treat it as a file path
+              : Image.asset(AppImages.logoIcon),
         )
       ],
     );

@@ -4,10 +4,10 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 
 class OnPressedGalleryAndCameraPicker {
   File? temp;
-  FileImage? image;
-  FileImage? takedImage;
+  String? image;
+  String? takedImage;
   set pickedImageSet(File? pickedImage) {
-    image = pickedImage != null ? FileImage(pickedImage) : null;
+    image = pickedImage != null ? pickedImage.path : null;
   }
 
   Future<void> onPressedGalleryPicker() async {

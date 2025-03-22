@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view/register_widgets/auth_snack_bar.dart';
+import 'package:food_guardian/core/widgets/snack_bar.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_cubit.dart';
 import 'package:go_router/go_router.dart';
 
@@ -80,7 +80,7 @@ class RegisterBody extends StatelessWidget {
               onTap: () async {
                 if (formKey.currentState!.validate()) {
                   if (rePassword != password) {
-                    snackBar(context, "Passwords do not match!");
+                    snackBar(context, "Passwords do not match!", null);
                     return;
                   }
                   BlocProvider.of<RegisterCubit>(context).registerUser(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view/register_widgets/auth_app_bar.dart';
-import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view/register_widgets/auth_snack_bar.dart';
+import 'package:food_guardian/core/widgets/snack_bar.dart';
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view/sign_in_widgets/sign_in_body.dart';
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view_model/sign_in_cubit/sign_in_cubit.dart';
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view_model/sign_in_cubit/sign_in_states.dart';
@@ -23,7 +23,7 @@ class SignInView extends StatelessWidget {
           GoRouter.of(context).push("/home");
           isLoaded = false;
         } else if (state is SignInFailure) {
-          snackBar(context, state.errorMessage);
+          snackBar(context, state.errorMessage, null);
           isLoaded = false;
         }
       },

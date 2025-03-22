@@ -6,28 +6,32 @@ import '../../models/card_itme_model.dart';
 
 class WriteOnFireStoreLogic {
   static void buildAddItemsToFirestore(
-      BuildContext context,
-      String category,
-      String name,
-      quantity,
-      DateTime selectedExpirationDate,
-      FileImage? image,
-      String? barcode,
-      String? imageAPI) {
+    BuildContext context,
+    String category,
+    String? name,
+    String? quantity,
+    DateTime selectedExpirationDate,
+    String? image,
+    String? barcode,
+  ) {
     CollectionReference inventoryCollection = FirebaseFirestore.instance
         .collection(CardItemModel.collectionName)
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection(category);
 
+    // Firestore has a caching mechanismxc to avoid unnecessary reloads
+    FirebaseFirestore.instance.settings = const Settings(
+      persistenceEnabled: true,
+    );
+
     DocumentReference documentReference = inventoryCollection.doc();
     CardItemModel cardItemModel = CardItemModel(
       docIDForDeleteAndEdit: documentReference.id,
-      itemName: name,
-      itemQuantity: quantity!,
+      itemName: name ?? null,
+      itemQuantity: quantity ?? null,
       itemExpirationDate: selectedExpirationDate,
       itemImage: image,
       itemBarcode: barcode,
-      itemImageAPI: imageAPI,
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);

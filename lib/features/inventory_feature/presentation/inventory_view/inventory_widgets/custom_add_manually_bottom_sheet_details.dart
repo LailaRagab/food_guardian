@@ -32,7 +32,7 @@ class _CustomAddManuallyBottomSheetDetailsState
 
   GlobalKey<FormState> formKey = GlobalKey();
 
-  FileImage? image;
+  String? image;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -95,14 +95,14 @@ class _CustomAddManuallyBottomSheetDetailsState
                 CustomSmallButton(onTap: () {
                   if (formKey.currentState!.validate()) {
                     WriteOnFireStoreLogic.buildAddItemsToFirestore(
-                        context,
-                        category,
-                        name!,
-                        quantity,
-                        selectedExpirationDate!,
-                        image,
-                        null,
-                        null);
+                      context,
+                      category,
+                      name!,
+                      quantity,
+                      selectedExpirationDate!,
+                      image,
+                      null,
+                    );
                   }
                 }),
               ],

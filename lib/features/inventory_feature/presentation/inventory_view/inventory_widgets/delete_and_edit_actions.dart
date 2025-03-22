@@ -17,8 +17,8 @@ class DeleteAndEditActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 379,
-      height: 123,
+      // width: 379,
+      // height: 123,
       decoration: BoxDecoration(
         color: AppColors.kRed,
         borderRadius: BorderRadius.all(Radius.circular(35)),

@@ -6,7 +6,7 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 class CustomUploadImageButton extends StatelessWidget {
   CustomUploadImageButton({super.key, required this.onImagePicked});
 
-  Function(FileImage? taked) onImagePicked;
+  Function(String? taked) onImagePicked;
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ class CustomUploadPhotoAlertDialog extends StatefulWidget {
     required this.onImagePicked,
   });
 
-  Function(FileImage?) onImagePicked;
+  Function(String?) onImagePicked;
   @override
   State<CustomUploadPhotoAlertDialog> createState() =>
       _CustomUploadPhotoAlertDialogState();
@@ -24,7 +24,7 @@ class CustomUploadPhotoAlertDialog extends StatefulWidget {
 class _CustomUploadPhotoAlertDialogState
     extends State<CustomUploadPhotoAlertDialog> {
   OnPressedGalleryAndCameraPicker picker = OnPressedGalleryAndCameraPicker();
-  FileImage? takedImage;
+  String? takedImage;
 
   @override
   Widget build(BuildContext context) {

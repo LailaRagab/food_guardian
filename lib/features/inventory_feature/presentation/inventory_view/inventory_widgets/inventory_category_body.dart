@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:food_guardian/core/widgets/bg_empty_screens_text.dart';
-import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view/register_widgets/auth_snack_bar.dart';
+import 'package:food_guardian/core/widgets/snack_bar.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/item_card.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_cubit.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_states.dart';
@@ -29,14 +29,14 @@ class InventoryCategoryBody extends StatelessWidget {
           isLoaded = false;
         }
         if (state is InventoryErrorState) {
-          snackBar(context, state.errorMessage);
+          snackBar(context, state.errorMessage, null);
           isLoaded = false;
         }
         if (state is InventoryItemFailedToDeletedState) {
-          snackBar(context, state.errorMessage);
+          snackBar(context, state.errorMessage, null);
         }
         if (state is InventoryItemFailedToEditState) {
-          snackBar(context, state.errorMessage);
+          snackBar(context, state.errorMessage, null);
         }
         if (state is InventoryItemEditedState) {
           isLoaded = false;
