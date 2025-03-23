@@ -47,8 +47,13 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
     }
   }
 
-  Future<void> updateItem(String subCollection, String docID,
-      String updatedName, String updatedQuantity, updatedExDate) async {
+  Future<void> updateItem(
+      String subCollection,
+      String docID,
+      String updatedName,
+      String updatedQuantity,
+      updatedExDate,
+      String image) async {
     try {
       await FirebaseFirestore.instance
           .collection(CardItemModel.collectionName)
@@ -59,6 +64,7 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
         "name": updatedName,
         "quantity": updatedQuantity,
         "exDate": updatedExDate,
+        "image": image
       });
       emit(InventoryItemEditedState());
       readStoredItemsInInventoryCategory(subCollection); // Refresh data

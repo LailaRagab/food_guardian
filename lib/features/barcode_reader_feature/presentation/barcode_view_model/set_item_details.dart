@@ -2,7 +2,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/write_on_firestore_logic.dart';
 
-import '../../../../core/widgets/snack_bar.dart';
+import '../../../../core/utils/snack_bar.dart';
 
 class SetItemDetails {
   static Future<void> addItemToFirestore(

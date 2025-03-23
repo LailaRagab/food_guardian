@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:food_guardian/core/utils/assets/images.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/edit_upload_photo.dart';
 import '../../models/card_itme_model.dart';
 import '../inventory_view/inventory_widgets/alert_dialog_text_button.dart';
 import '../inventory_view/inventory_widgets/custom_show_my_date_picker_widget.dart';
@@ -17,7 +18,7 @@ class EditLogic {
   late TextEditingController quantityController;
 
   late DateTime updatedExDate;
-
+  // String? image = ?? "";
   get nameControllerGet => nameController;
   get quantityControllerGet => quantityController;
 
@@ -45,9 +46,13 @@ class EditLogic {
                 TextFieldEditDialog(
                     controller: quantityController, label: "Quantity"),
                 SizedBox(height: 20),
-                CustomShowMyDatePickerWidget(onDateSelected: (DateTime value) {
-                  updatedExDate = value;
-                })
+                CustomShowMyDatePickerWidget(
+                  onDateSelected: (DateTime value) {
+                    updatedExDate = value;
+                  },
+                ),
+                SizedBox(height: 20),
+                EditUploadPhoto()
               ],
             ),
             actions: [
@@ -59,11 +64,13 @@ class EditLogic {
                 onTap: () {
                   if (formKey.currentState!.validate()) {
                     BlocProvider.of<InventoryCategoryCubit>(context).updateItem(
-                        subCategory,
-                        docID,
-                        nameController.text,
-                        quantityController.text,
-                        updatedExDate);
+                      subCategory,
+                      docID,
+                      nameController.text,
+                      quantityController.text,
+                      updatedExDate,
+                      // " image!"
+                    );
                     Navigator.pop(context);
                   }
                 },

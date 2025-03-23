@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
+import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/row_of_name_and_quantity_.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/on_pressed_gallery_and_camera_picker.dart';
 
 import '../../../../../core/utils/assets/colors.dart';
@@ -13,7 +14,6 @@ class ItemCardDetails extends StatelessWidget {
   ItemCardDetails({super.key, required this.model});
 
   final CardItemModel model;
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,17 +32,20 @@ class ItemCardDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Name: ${model.itemName}",
-                style: AppFonts.font16,
+              RowOfNameAndQuantity(
+                textLabel: "Name: ",
+                input: "${model.itemName}",
+                numLines: 3,
+                textLabelSize: 50,
               ),
               SizedBox(
                 height: 8,
               ),
-              Text(
-                "Quantity: ${model.itemQuantity}",
-                style: AppFonts.font16,
-              ),
+              RowOfNameAndQuantity(
+                  textLabel: "Quantity: ",
+                  input: "${model.itemQuantity}",
+                  numLines: 1,
+                  textLabelSize: 80),
               SizedBox(
                 height: 8,
               ),

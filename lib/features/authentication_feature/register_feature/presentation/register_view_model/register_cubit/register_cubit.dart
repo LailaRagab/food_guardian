@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_states.dart';
 
-import '../../../../../../core/widgets/snack_bar.dart';
+import '../../../../../../core/utils/snack_bar.dart';
 
 class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(InitialState());
