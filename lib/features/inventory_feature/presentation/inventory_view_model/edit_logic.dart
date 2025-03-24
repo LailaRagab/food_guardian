@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_guardian/core/utils/assets/images.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/edit_upload_photo.dart';
 import '../../models/card_itme_model.dart';
 import '../inventory_view/inventory_widgets/alert_dialog_text_button.dart';
@@ -11,23 +10,32 @@ import 'inventory_category_cubit.dart';
 class EditLogic {
   EditLogic({required this.item})
       : nameController = TextEditingController(text: item.itemName),
-        quantityController = TextEditingController(text: item.itemQuantity);
+        quantityController = TextEditingController(text: item.itemQuantity),
+        oldImage = item.itemImage,
+        editUploadPhoto = EditUploadPhoto();
 
+  String? oldImage;
   late CardItemModel item;
   late TextEditingController nameController;
   late TextEditingController quantityController;
+  late EditUploadPhoto editUploadPhoto;
 
   late DateTime updatedExDate;
-  // String? image = ?? "";
+  late String? image;
+
   get nameControllerGet => nameController;
   get quantityControllerGet => quantityController;
 
   GlobalKey<FormState> formKey = GlobalKey();
+
   void editShowDialog(
     BuildContext context,
     String subCategory,
     String docID,
   ) {
+    // If the user hasn't picked a new image, keep the old one.
+    image = editUploadPhoto.forImage ?? oldImage;
+
     showDialog(
       context: context,
       builder: (context) {
@@ -52,7 +60,7 @@ class EditLogic {
                   },
                 ),
                 SizedBox(height: 20),
-                EditUploadPhoto()
+                editUploadPhoto,
               ],
             ),
             actions: [
@@ -63,13 +71,16 @@ class EditLogic {
               AlertDialogTextButton(
                 onTap: () {
                   if (formKey.currentState!.validate()) {
+                    // Update with the picked image or old image
+                    image = editUploadPhoto.forImage ?? oldImage;
+
                     BlocProvider.of<InventoryCategoryCubit>(context).updateItem(
                       subCategory,
                       docID,
                       nameController.text,
                       quantityController.text,
                       updatedExDate,
-                      // " image!"
+                      image!,
                     );
                     Navigator.pop(context);
                   }
