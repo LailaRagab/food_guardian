@@ -5,4 +5,5 @@ class AppImages {
   static String logoIcon = "$constant/logo_icon.png";
   static String inventoryIcon = "$constant/stock-rotation.png";
   static String reciepsIcon = "$constant/cooking.png";
+  static String defaultProfileImage = "$constant/default_profile_image.png";
 }

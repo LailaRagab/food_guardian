@@ -8,7 +8,7 @@ import '../../../../../../core/utils/snack_bar.dart';
 class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(InitialState());
   Future<void> registerUser(
-      {required email, required password, required name}) async {
+      {required email, required password, required name, String? image}) async {
     emit(LoadingState());
     try {
       final credential =
@@ -18,6 +18,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       );
       emit(SuccessState());
       await credential.user?.updateDisplayName(name);
+      await credential.user?.updatePhotoURL(image);
       await credential.user?.reload();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

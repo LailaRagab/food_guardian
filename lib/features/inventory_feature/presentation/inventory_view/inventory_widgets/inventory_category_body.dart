@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:food_guardian/core/widgets/bg_empty_screens_text.dart';
 import 'package:food_guardian/core/utils/snack_bar.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/item_card.dart';

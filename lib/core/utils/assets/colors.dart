@@ -14,4 +14,5 @@ class AppColors {
   static Color kUploadButtonBg = Color(0XFFD9D9D9);
   static Color kUploadButtonText = Color(0XFF626262);
   static Color kRed = Colors.redAccent;
+  static Color kGrey = Colors.grey;
 }

@@ -36,8 +36,6 @@ class SearchOnFirestore {
 
     if (!isDuplicate) {
       APIService.fetchItemFromAPIs(context, barcode, selectedExpirationDate);
-      print(
-          "object------------------------------------------------------------------");
     }
   }
 }

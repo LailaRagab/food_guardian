@@ -51,18 +51,20 @@ class ScanViewState extends State<ScanView> {
   }
 
   Future<void> showDialogForDatePicker() async {
-    await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: CustomShowMyDatePickerWidget(
-          onDateSelected: (DateTime value) {
-            setState(() {
-              selectedExpirationDate = value;
-            });
-            Navigator.pop(context);
-          },
+    if (mounted) {
+      await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: CustomShowMyDatePickerWidget(
+            onDateSelected: (DateTime value) {
+              setState(() {
+                selectedExpirationDate = value;
+              });
+              Navigator.pop(context);
+            },
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
