@@ -12,6 +12,10 @@ class AccountView extends StatefulWidget {
 }
 
 class _AccountViewState extends State<AccountView> {
+  void onProfileUpdated() {
+    setState(() {}); // This will rebuild the widget
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
@@ -20,7 +24,11 @@ class _AccountViewState extends State<AccountView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ProfileSection(),
+            ProfileSection(
+              onProfileUpdated: () {
+                onProfileUpdated();
+              },
+            ),
             SizedBox(
               height: 20,
             ),
