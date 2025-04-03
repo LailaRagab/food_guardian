@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/assets/colors.dart';
-import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/account_management_shared_list_tile.dart';
-import 'package:food_guardian/features/account_feature/presentation/account_view_model/edit_profile_logic.dart';
+import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/account_actions_expansion_tile.dart';
+import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/profile_management_expansion_tile.dart';
 
 class AccountManagementSection extends StatefulWidget {
   const AccountManagementSection({super.key});
@@ -22,19 +22,11 @@ class _AccountManagementSectionState extends State<AccountManagementSection> {
               Theme.of(context).copyWith(dividerColor: AppColors.kTransparent),
           child: ExpansionTile(
             title: Text("Account Management"),
-            leading: Icon(Icons.account_circle),
+            leading: Icon(Icons.manage_accounts_sharp),
+            iconColor: AppColors.kBlack,
             children: [
-              AccountManagementSharedListTile(
-                title: 'Edit Profile',
-                icon: Icons.edit,
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return EditProfileLogic();
-                      });
-                },
-              )
+              ProfileManagementExpansionTile(),
+              AccountActionsExpansionTile()
             ],
           ),
         ));

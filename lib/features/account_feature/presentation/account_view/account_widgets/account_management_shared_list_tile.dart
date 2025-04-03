@@ -8,13 +8,19 @@ class AccountManagementSharedListTile extends StatelessWidget {
       required this.onTap});
   final String title;
   final IconData icon;
-  final VoidCallback onTap;
+  final Widget onTap;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(title),
       leading: Icon(icon),
-      onTap: onTap,
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return onTap;
+            });
+      },
     );
   }
 }
