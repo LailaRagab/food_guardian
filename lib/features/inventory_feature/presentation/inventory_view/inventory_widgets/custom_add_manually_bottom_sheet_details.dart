@@ -4,8 +4,6 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_small_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_upload_image_button.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_show_my_date_picker_widget.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_upload_photo_alert_dialog.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/on_pressed_gallery_and_camera_picker.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/write_on_firestore_logic.dart';
 
 import '../../../../../core/utils/assets/fonts.dart';

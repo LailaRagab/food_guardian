@@ -36,10 +36,10 @@ class CardItemModel {
   Map<String, dynamic> toJson() {
     return {
       "docID": docIDForDeleteAndEdit,
-      "name": itemName ?? null,
-      "quantity": itemQuantity ?? null,
+      "name": itemName,
+      "quantity": itemQuantity,
       "exDate": itemExpirationDate,
-      "image": itemImage != null ? itemImage : null,
+      "image": itemImage,
       "barcode": itemBarcode,
     };
   }

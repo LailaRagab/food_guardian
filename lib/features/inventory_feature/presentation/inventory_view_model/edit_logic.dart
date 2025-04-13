@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_guardian/core/utils/assets/images.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/edit_upload_photo.dart';
 import '../../models/card_itme_model.dart';
 import '../inventory_view/inventory_widgets/alert_dialog_text_button.dart';
 import '../inventory_view/inventory_widgets/custom_show_my_date_picker_widget.dart';
 import '../inventory_view/inventory_widgets/text_field_edit_dialog.dart';
-import 'inventory_category_cubit.dart';
+import '../../models/inventory_category_cubit.dart';
 
 class EditLogic {
   EditLogic({required this.item})
       : nameController = TextEditingController(text: item.itemName),
         quantityController = TextEditingController(text: item.itemQuantity),
-        oldImage = item.itemImage,
+        oldImage = item.itemImage ?? AppImages.logoIcon,
         editUploadPhoto = EditUploadPhoto();
 
   String? oldImage;

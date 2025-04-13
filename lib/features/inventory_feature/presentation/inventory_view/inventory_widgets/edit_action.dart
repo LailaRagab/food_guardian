@@ -6,7 +6,7 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
 import '../../../models/card_itme_model.dart';
-import '../../inventory_view_model/inventory_category_cubit.dart';
+import '../../../models/inventory_category_cubit.dart';
 import 'alert_dialog_text_button.dart';
 import 'custom_show_my_date_picker_widget.dart';
 

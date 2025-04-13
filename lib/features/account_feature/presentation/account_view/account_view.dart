@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/account_management_section.dart';
-import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/notification_section.dart';
-import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/notifications_list.dart';
+import 'package:food_guardian/features/notifications_feature/presentation/notifications_view/notifications_widgets/notification_enabled_section.dart';
+import 'package:food_guardian/features/notifications_feature/presentation/notifications_view/notifications_widgets/notifications_list_section.dart';
 import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/profile_section.dart';
 
 class AccountView extends StatefulWidget {

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/widgets/bg_empty_screens_text.dart';
 import 'package:food_guardian/core/utils/snack_bar.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/item_card.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_cubit.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_states.dart';
+import 'package:food_guardian/features/inventory_feature/models/inventory_category_cubit.dart';
+import 'package:food_guardian/features/inventory_feature/models/inventory_category_states.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../models/card_itme_model.dart';
 

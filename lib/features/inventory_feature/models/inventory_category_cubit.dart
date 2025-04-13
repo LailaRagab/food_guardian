@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_states.dart';
+import 'package:food_guardian/features/inventory_feature/models/inventory_category_states.dart';
 
-import '../../models/card_itme_model.dart';
+import 'card_itme_model.dart';
 
 class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
   InventoryCategoryCubit() : super(InitialState());

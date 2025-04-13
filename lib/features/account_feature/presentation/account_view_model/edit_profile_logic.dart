@@ -37,11 +37,15 @@ class _EditProfileLogicState extends State<EditProfileLogic> {
           snackBar(context, "There is nothing updated!", null);
         }
         if (emailController.text.isNotEmpty) {
-          await UpdateEmail.updateEmail(context, emailController);
+          if (context.mounted) {
+            await UpdateEmail.updateEmail(context, emailController);
+          }
           await user?.reload();
           setState(() {}); // Notify parent widget to rebuild
         }
-        Navigator.of(context).pop();
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
       },
     );
   }

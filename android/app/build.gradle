@@ -10,12 +10,13 @@ plugins {
 
 android {
     namespace = "com.example.food_guardian"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = "28.0.13004108"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -44,4 +45,7 @@ android {
 
 flutter {
     source = "../.."
+}
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_add_manually_bottom_sheet_details.dart';
 
 import '../../../../../core/utils/assets/colors.dart';
-import '../../../models/card_itme_model.dart';
 
 class CustomAddManuallyBottomSheet extends StatelessWidget {
   const CustomAddManuallyBottomSheet({

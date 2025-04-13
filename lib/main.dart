@@ -4,11 +4,14 @@ import 'package:firebase_core/firebase_core.dart'; //import for using firebase
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/utils/app_router.dart';
-import 'package:food_guardian/core/utils/assets/colors.dart';
+import 'package:food_guardian/core/utils/helpers/helper_for_fetch_fun.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_cubit.dart';
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view_model/sign_in_cubit/sign_in_cubit.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/inventory_category_cubit.dart';
+import 'package:food_guardian/features/inventory_feature/models/inventory_category_cubit.dart';
+import 'package:hive_flutter/adapters.dart';
 
+import 'features/notifications_feature/notifications_models/notifications_services.dart';
+import 'features/notifications_feature/notifications_models/store_notifications_using_hive.dart';
 import 'firebase_options.dart'; //import for this DefaultFirebaseOptions
 
 void main() async {
@@ -16,6 +19,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // 5
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(NotificationModelAdapter());
+  await Hive.openBox<NotificationModel>('notifications');
+  await NotificationService.init();
+  // 3
+  await scheduleAllNotifications();
   runApp(FoodGuardian());
 }
 
