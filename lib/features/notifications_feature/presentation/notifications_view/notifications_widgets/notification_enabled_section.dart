@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/assets/colors.dart';
+import 'package:food_guardian/features/notifications_feature/notifications_models/for_passing_switch_state.dart';
 
 class NotificationSection extends StatefulWidget {
   const NotificationSection({super.key});
@@ -9,7 +10,14 @@ class NotificationSection extends StatefulWidget {
 }
 
 class _NotificationSectionState extends State<NotificationSection> {
-  bool notificationsEnabled = true;
+  late bool notificationsEnabled;
+
+  @override
+  void initState() {
+    super.initState();
+    notificationsEnabled = ForPassingSwitchState.instance.getSwitchValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,7 +30,7 @@ class _NotificationSectionState extends State<NotificationSection> {
         onChanged: (newValue) {
           setState(() {
             notificationsEnabled = newValue;
-            // TODO: Handle enabling/disabling notifications here
+            ForPassingSwitchState.instance.setSwitchValue(newValue);
           });
         },
         secondary: const Icon(Icons.notifications),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_guardian/core/utils/assets/fonts.dart';
+import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
+import 'package:food_guardian/core/widgets/custom_text.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:food_guardian/core/utils/assets/colors.dart';
 import '../../../notifications_models/store_notifications_using_hive.dart';
@@ -11,7 +14,6 @@ class NotificationsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 4),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(35),
       ),
@@ -31,14 +33,17 @@ class NotificationsList extends StatelessWidget {
               }
 
               return Column(
-                children: box.values.map((notif) {
+                children: box.values.map((notify) {
                   return ListTile(
-                    leading: const Icon(Icons.notifications),
-                    title: Text(notif.title),
-                    subtitle: Text(notif.time.toString()),
+                    title:
+                        CustomText(text: notify.title, style: AppFonts.font16),
+                    subtitle: Text(
+                        "${notify.time.day.toString()}-${notify.time.month.toString()}-${notify.time.year}"),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete),
-                      onPressed: () => box.delete(notif.id),
+                      onPressed: () {
+                        box.delete(notify.id);
+                      },
                     ),
                   );
                 }).toList(),

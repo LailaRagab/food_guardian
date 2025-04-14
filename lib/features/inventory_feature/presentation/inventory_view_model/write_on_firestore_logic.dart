@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/helpers/helper_for_fetch_fun.dart';
+import '../../../notifications_feature/notifications_models/for_passing_switch_state.dart';
 import '../../models/card_itme_model.dart';
 
 class WriteOnFireStoreLogic {
@@ -35,6 +37,9 @@ class WriteOnFireStoreLogic {
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);
+    if (ForPassingSwitchState.instance.getSwitchValue) {
+      scheduleAllNotifications();
+    }
     // inventoryCollection.add(cardItemModel.toJson());
   }
 }

@@ -12,15 +12,19 @@ class NotificationModel extends HiveObject {
   final String title;
 
   @HiveField(2)
-  final String body;
+  final DateTime time;
 
   @HiveField(3)
-  final DateTime time;
+  final String body;
 
   NotificationModel({
     required this.id,
     required this.title,
-    required this.body,
     required this.time,
+    required this.body,
   });
+  static Future<void> clearLocalNotificationsOnLogin() async {
+    final box = Hive.box<NotificationModel>('notifications');
+    await box.clear();
+  }
 }

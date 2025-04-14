@@ -1,18 +1,12 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:food_guardian/features/notifications_feature/notifications_models/store_notifications_using_hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
   static Future<void> init() async {
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestNotificationsPermission();
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
@@ -22,22 +16,20 @@ class NotificationService {
     );
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-    tz.initializeTimeZones(); // Required for scheduling
   }
 
   static Future<void> scheduleNotification({
+    //This part that will display in the notification section
     required int id,
     required String title,
     required String body,
     required DateTime scheduledDate,
   }) async {
-    print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
-    await flutterLocalNotificationsPlugin.zonedSchedule(
+    // This part will display in the top of screen
+    await flutterLocalNotificationsPlugin.show(
       id,
       title,
       body,
-      tz.TZDateTime.from(scheduledDate, tz.local),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'main_channel',
@@ -46,13 +38,10 @@ class NotificationService {
           priority: Priority.high,
         ),
       ),
-      matchDateTimeComponents: DateTimeComponents.dateAndTime,
-      androidScheduleMode:
-          AndroidScheduleMode.exactAllowWhileIdle, // ✅ required now
     );
 
-    // 6
-    // 🧠 Save it in Hive
+    // 6x
+    // Save it in Hive
     final box = Hive.box<NotificationModel>('notifications');
     box.put(
         id,

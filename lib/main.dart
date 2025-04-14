@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart'; //import for using firebase
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,16 +17,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  // 5
   WidgetsFlutterBinding.ensureInitialized();
+  //5
   await Hive.initFlutter();
   Hive.registerAdapter(NotificationModelAdapter());
   await Hive.openBox<NotificationModel>('notifications');
+  //1 for switch
+  await Hive.openBox("switchState");
   await NotificationService.init();
-  // 3
-  await scheduleAllNotifications();
+
   runApp(FoodGuardian());
+  // 3
 }
 
 class FoodGuardian extends StatelessWidget {
