@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/widgets/custom_text_button.dart';
-import '../../../../../core/widgets/elevated_button.dart';
+import '../../../../../core/widgets/custom_elevated_button.dart';
 
 class SharedAlertDialog extends StatelessWidget {
   const SharedAlertDialog({

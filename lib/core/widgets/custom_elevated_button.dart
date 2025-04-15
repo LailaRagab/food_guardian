@@ -4,16 +4,25 @@ import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:food_guardian/core/widgets/custom_text.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton(
-      {super.key, required this.onPressed, required this.text});
+  CustomElevatedButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.style,
+      this.textStyle});
   final VoidCallback onPressed;
   final String text;
+  ButtonStyle? style =
+      ElevatedButton.styleFrom(backgroundColor: AppColors.kPrimary);
+  TextStyle? textStyle = AppFonts.font14.copyWith(color: AppColors.kBlack);
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: onPressed,
+        style: style,
         child: CustomText(
             text: text,
-            style: AppFonts.font14.copyWith(color: AppColors.kBlack)));
+            style: textStyle ??
+                AppFonts.font14.copyWith(color: AppColors.kBlack)));
   }
 }

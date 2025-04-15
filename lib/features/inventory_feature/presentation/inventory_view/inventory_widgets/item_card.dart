@@ -1,6 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/delete_and_edit_actions.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/item_card_details.dart';
