@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/helpers/helper_for_fetch_fun.dart';
 import '../../../notifications_feature/notifications_models/for_passing_switch_state.dart';
+import '../../../notifications_feature/notifications_models/store_notifications_using_hive.dart';
 import '../../models/card_itme_model.dart';
 
 class WriteOnFireStoreLogic {
@@ -37,6 +38,7 @@ class WriteOnFireStoreLogic {
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);
+    NotificationModel.clearLocalNotificationsOnLogin();
     if (ForPassingSwitchState.instance.getSwitchValue) {
       scheduleAllNotifications();
     }

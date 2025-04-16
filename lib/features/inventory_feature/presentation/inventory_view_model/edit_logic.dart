@@ -4,6 +4,7 @@ import 'package:food_guardian/core/utils/assets/images.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/edit_upload_photo.dart';
 import '../../../../core/utils/helpers/helper_for_fetch_fun.dart';
 import '../../../notifications_feature/notifications_models/for_passing_switch_state.dart';
+import '../../../notifications_feature/notifications_models/store_notifications_using_hive.dart';
 import '../../models/card_itme_model.dart';
 import '../inventory_view/inventory_widgets/alert_dialog_text_button.dart';
 import '../inventory_view/inventory_widgets/custom_show_my_date_picker_widget.dart';
@@ -86,6 +87,7 @@ class EditLogic {
                       image!,
                     );
                     Navigator.pop(context);
+                    NotificationModel.clearLocalNotificationsOnLogin();
                     if (ForPassingSwitchState.instance.getSwitchValue) {
                       scheduleAllNotifications();
                     }

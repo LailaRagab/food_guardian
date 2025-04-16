@@ -1,7 +1,7 @@
 class RecipesModel {
   String id;
   String name;
-  var image;
+  String? image;
   List<String> missIngredients;
 
   RecipesModel(

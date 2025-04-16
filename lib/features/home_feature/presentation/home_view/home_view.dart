@@ -28,7 +28,10 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            appBar: CustomAppBar(),
+            appBar: CustomAppBar(
+              firstText: 'Food',
+              secondText: 'Guardian',
+            ),
             body: tabs[currentIndex],
             bottomNavigationBar: CustomBottomNavigationBar(
               currentIndex: currentIndex,

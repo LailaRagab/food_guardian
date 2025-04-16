@@ -4,22 +4,25 @@ import '../utils/assets/colors.dart';
 import '../utils/assets/images.dart';
 
 class TitleAppBarScreens extends StatelessWidget {
-  const TitleAppBarScreens({super.key});
+  const TitleAppBarScreens(
+      {super.key, required this.firstText, required this.secondText});
 
+  final String firstText;
+  final String secondText;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Food",
+          firstText,
           style: TextStyle(
               color: AppColors.kPrimary,
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),
         Text(
-          "Guardian",
+          secondText,
           style: TextStyle(
               color: AppColors.kDarkGrey,
               fontSize: 25,

@@ -45,7 +45,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 icon: ImageIcon(AssetImage(AppImages.inventoryIcon)),
                 label: "Inventory"),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage(AppImages.reciepsIcon)),
+                icon: ImageIcon(AssetImage(AppImages.recipesIcon)),
                 label: "Recipes"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.dashboard_customize_outlined),

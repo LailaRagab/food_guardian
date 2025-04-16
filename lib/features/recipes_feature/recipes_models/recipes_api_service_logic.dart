@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:food_guardian/features/recipes_feature/recipes_models/for_passing_expire_ingredient.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/recipes_model.dart';
 
 import '../../barcode_reader_feature/presentation/barcode_view_model/custom_show_snak_bar.dart';
@@ -10,10 +11,10 @@ class RecipesApiServiceLogic {
   static String apiKey = "61d9443f7f2a4e75a9852d346df1c217";
   static Future<List<RecipesModel>> fetchRecipesFromApi(
       BuildContext context) async {
+    final fetchIngredient = ForPassingExpireIngredient.instance.getIngredients;
     try {
       Response request = await dio.get(
-          "$basePath/findByIngredients?apiKey=$apiKey&ingredients=apples,+flour,+sugar&number=2");
-      print("Response Status: ${request.statusCode}");
+          "$basePath/findByIngredients?apiKey=$apiKey&ingredients=$fetchIngredient&number=100");
 
       if (request.statusCode == 200) {
         List<dynamic> recipesDataField = request.data;
@@ -30,7 +31,6 @@ class RecipesApiServiceLogic {
       }
     } catch (e) {
       if (context.mounted) {
-        print("Error: $e");
         ShowSnackBarHandlingBarcodeReader.snackBarForOtherErrorsTypes(context);
       }
     }

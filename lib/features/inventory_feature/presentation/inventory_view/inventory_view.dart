@@ -6,8 +6,26 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/fridge_category.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/pantry_category.dart';
 
-class InventoryView extends StatelessWidget {
+import '../../../../core/utils/helpers/helper_for_fetch_fun.dart';
+import '../../../notifications_feature/notifications_models/for_passing_switch_state.dart';
+import '../../../notifications_feature/notifications_models/store_notifications_using_hive.dart';
+
+class InventoryView extends StatefulWidget {
   const InventoryView({super.key});
+
+  @override
+  State<InventoryView> createState() => _InventoryViewState();
+}
+
+class _InventoryViewState extends State<InventoryView> {
+  @override
+  void initState() {
+    NotificationModel.clearLocalNotificationsOnLogin();
+    if (ForPassingSwitchState.instance.getSwitchValue) {
+      scheduleAllNotifications();
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
