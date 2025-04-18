@@ -31,6 +31,7 @@ class _HomeViewState extends State<HomeView> {
             appBar: CustomAppBar(
               firstText: 'Food',
               secondText: 'Guardian',
+              leading: false,
             ),
             body: tabs[currentIndex],
             bottomNavigationBar: CustomBottomNavigationBar(

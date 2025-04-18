@@ -38,7 +38,7 @@ class WriteOnFireStoreLogic {
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);
-    NotificationModel.clearLocalNotificationsOnLogin();
+    NotificationModel.clearLocalNotifications();
     if (ForPassingSwitchState.instance.getSwitchValue) {
       scheduleAllNotifications();
     }

@@ -20,7 +20,7 @@ class InventoryView extends StatefulWidget {
 class _InventoryViewState extends State<InventoryView> {
   @override
   void initState() {
-    NotificationModel.clearLocalNotificationsOnLogin();
+    NotificationModel.clearLocalNotifications();
     if (ForPassingSwitchState.instance.getSwitchValue) {
       scheduleAllNotifications();
     }

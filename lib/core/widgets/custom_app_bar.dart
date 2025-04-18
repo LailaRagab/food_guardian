@@ -6,15 +6,19 @@ import '../utils/assets/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar(
-      {super.key, required this.firstText, required this.secondText});
+      {super.key,
+      required this.firstText,
+      required this.secondText,
+      required this.leading});
 
   final String firstText;
   final String secondText;
+  final bool leading;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: leading,
         centerTitle: true,
         elevation: 4,
         shadowColor: AppColors.kPrimary,

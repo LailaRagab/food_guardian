@@ -42,4 +42,11 @@ class AppFonts {
     color: AppColors.kDarkGrey,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle font26 = TextStyle(
+      fontSize: 26, fontWeight: FontWeight.bold, color: AppColors.kBlack);
+  static TextStyle font20Black = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: AppColors.kBlack,
+  );
 }

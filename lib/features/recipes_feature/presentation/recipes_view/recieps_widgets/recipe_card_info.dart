@@ -21,7 +21,9 @@ class RecipeCardInfo extends StatelessWidget {
         if (recipe.missIngredients != null &&
             (recipe.missIngredients as List).isNotEmpty)
           RecipeCardInfoMissIngredients(recipe: recipe),
-        RecipeCardInfoViewRecipeButton()
+        RecipeCardInfoViewRecipeButton(
+          recipe: recipe,
+        )
       ],
     );
   }

@@ -23,7 +23,7 @@ class NotificationModel extends HiveObject {
     required this.time,
     required this.body,
   });
-  static Future<void> clearLocalNotificationsOnLogin() async {
+  static Future<void> clearLocalNotifications() async {
     final box = Hive.box<NotificationModel>('notifications');
     await box.clear();
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/features/recipes_feature/presentation/recipes_view/recieps_widgets/recipe_card.dart';
+import 'package:food_guardian/features/recipes_feature/recipes_models/for_passing_recipe_obj_from_recipes_model.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/recipes_model.dart';
 
 class BodyRecipesView extends StatelessWidget {
@@ -16,6 +17,8 @@ class BodyRecipesView extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 RecipesModel recipe = recipes[index];
+                ForPassingRecipeObjFromRecipesModel.recipeModelObj
+                    .setRecipesModel(recipe);
                 return RecipeCard(
                   recipe: recipe,
                 );

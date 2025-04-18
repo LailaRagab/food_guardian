@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:food_guardian/core/utils/assets/images.dart';
+import 'package:food_guardian/features/recipes_feature/recipes_models/for_passing_recipe_obj_from_recipes_model.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/recipes_model.dart';
 
-class RecipeCardImage extends StatelessWidget {
-  const RecipeCardImage({super.key, required this.recipe});
-
-  final RecipesModel recipe;
-
+class CustomClipRRect extends StatelessWidget {
+  CustomClipRRect({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
+    final recipeModel =
+        ForPassingRecipeObjFromRecipesModel.recipeModelObj.getRecipesModel;
+
+    final imageUrl = recipeModel?.image;
+
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(top: Radius.circular(35)),
-      child: recipe.image != null
+      child: imageUrl != null
           ? Image.network(
-              recipe.image!,
+              imageUrl,
               errorBuilder: (BuildContext context, error, stackTrace) {
-                return Image.asset("assets/images/recipe_image_not_found.png");
+                return Image.asset(AppImages.recipeImageNotFound);
               },
               width: double.infinity,
               height: 180,
               fit: BoxFit.cover,
             )
           : Image.asset(
-              'assets/images/default_recipe.png',
+              AppImages.recipeImageNotFound,
               width: double.infinity,
               height: 180,
               fit: BoxFit.cover,

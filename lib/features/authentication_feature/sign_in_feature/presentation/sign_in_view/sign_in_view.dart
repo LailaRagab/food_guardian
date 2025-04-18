@@ -31,7 +31,7 @@ class _SignInViewState extends State<SignInView> {
         } else if (state is SignInSuccess) {
           GoRouter.of(context).push("/home");
           isLoaded = false; // ✅ Schedule only when user is known
-          NotificationModel.clearLocalNotificationsOnLogin();
+          NotificationModel.clearLocalNotifications();
           if (ForPassingSwitchState.instance.getSwitchValue) {
             scheduleAllNotifications();
           }

@@ -87,7 +87,7 @@ class EditLogic {
                       image!,
                     );
                     Navigator.pop(context);
-                    NotificationModel.clearLocalNotificationsOnLogin();
+                    NotificationModel.clearLocalNotifications();
                     if (ForPassingSwitchState.instance.getSwitchValue) {
                       scheduleAllNotifications();
                     }

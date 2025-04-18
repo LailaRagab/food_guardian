@@ -3,10 +3,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/for_passing_expire_ingredient.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/recipes_model.dart';
 
-import '../../barcode_reader_feature/presentation/barcode_view_model/custom_show_snak_bar.dart';
+import '../../../../core/utils/constants/constants.dart';
+import '../../../barcode_reader_feature/presentation/barcode_view_model/custom_show_snak_bar.dart';
 
 class RecipesApiServiceLogic {
-  static Dio dio = Dio();
+  static var dio = Constants.dio;
   static String basePath = "https://api.spoonacular.com/recipes";
   static String apiKey = "61d9443f7f2a4e75a9852d346df1c217";
   static Future<List<RecipesModel>> fetchRecipesFromApi(
