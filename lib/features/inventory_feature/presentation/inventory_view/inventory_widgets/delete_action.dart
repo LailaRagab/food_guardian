@@ -5,7 +5,8 @@ import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
 
 class DeleteAction extends StatelessWidget {
-  DeleteAction({super.key, required this.subCategory, required this.docID});
+  const DeleteAction(
+      {super.key, required this.subCategory, required this.docID});
 
   final String subCategory;
   final String docID;

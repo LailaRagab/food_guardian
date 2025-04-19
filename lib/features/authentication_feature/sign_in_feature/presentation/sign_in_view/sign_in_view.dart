@@ -13,7 +13,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../core/utils/helpers/helper_for_fetch_fun.dart';
 
 class SignInView extends StatefulWidget {
-  SignInView({super.key});
+  const SignInView({super.key});
 
   @override
   State<SignInView> createState() => _SignInViewState();

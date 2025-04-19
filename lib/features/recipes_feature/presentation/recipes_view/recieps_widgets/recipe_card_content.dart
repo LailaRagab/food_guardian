@@ -11,7 +11,9 @@ class RecipeCardContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomClipRRect(),
+        CustomClipRRect(
+          imageUrl: recipe.image,
+        ),
         Padding(
             padding: const EdgeInsets.all(12),
             child: RecipeCardInfo(recipe: recipe))

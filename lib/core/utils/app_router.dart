@@ -6,6 +6,7 @@ import 'package:food_guardian/features/splash_feature/presentation/splash_view/s
 import 'package:go_router/go_router.dart';
 
 import '../../features/barcode_reader_feature/presentation/barcode_reader_view/barcode_reader_view.dart';
+import '../../features/recipes_feature/recipes_models/recipe_details_model.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -22,8 +23,19 @@ class AppRouter {
       GoRoute(path: "/home", builder: (context, state) => HomeView()),
       GoRoute(path: "/scan", builder: (context, state) => ScanView()),
       GoRoute(
-          path: "/recipesDetails",
-          builder: (context, state) => RecipesDetailsView()),
+        path: '/recipesDetails',
+        builder: (context, state) {
+          final stepsList = state.extra;
+          // if (stepsList == null || stepsList is! List<RecipeDetailsModel>) {
+          //   return const Scaffold(
+          //     body: Center(child: Text("Error loading recipe steps.")),
+          //   );
+          // }
+
+          return RecipesDetailsView(
+              stepsList: stepsList as List<RecipeDetailsModel>);
+        },
+      )
     ],
   );
 }

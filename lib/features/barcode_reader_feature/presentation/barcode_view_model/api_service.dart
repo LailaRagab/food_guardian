@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:food_guardian/features/barcode_reader_feature/presentation/barcode_view_model/custom_show_snak_bar.dart';
 import '../../../../core/utils/constants/constants.dart';
 import '../../../inventory_feature/presentation/inventory_view_model/write_on_firestore_logic.dart';
@@ -11,7 +10,7 @@ class APIService {
   static Future fetchItemFromAPIs(BuildContext context, String barcode,
       DateTime selectedExpirationDate) async {
     try {
-      Response response = await dio.get("$base/product/${barcode}");
+      Response response = await dio.get("$base/product/$barcode");
       if (response.statusCode == 200) {
         Map<String, dynamic> dataField = response.data;
         final data = dataField["product"];

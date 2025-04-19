@@ -10,8 +10,8 @@ import '../../../../../core/utils/assets/fonts.dart';
 
 class CustomAddManuallyBottomSheetDetails extends StatefulWidget {
   const CustomAddManuallyBottomSheetDetails({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<CustomAddManuallyBottomSheetDetails> createState() =>

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/delete_action.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/edit_action.dart';
-import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/delete_logic.dart';
 
 import '../../../../../core/utils/assets/colors.dart';
 import '../../../models/card_itme_model.dart';
 
 class DeleteAndEditDetails extends StatelessWidget {
-  DeleteAndEditDetails({
+  const DeleteAndEditDetails({
     super.key,
     required this.subCategory,
     required this.docID,

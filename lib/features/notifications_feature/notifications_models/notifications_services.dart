@@ -39,7 +39,6 @@ class NotificationService {
         ),
       ),
     );
-
     // 6x
     // Save it in Hive
     final box = Hive.box<NotificationModel>('notifications');

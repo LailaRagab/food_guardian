@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
-import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
 import 'package:food_guardian/core/widgets/custom_text.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:food_guardian/core/utils/assets/colors.dart';

@@ -6,7 +6,7 @@ import 'package:food_guardian/features/account_feature/presentation/account_view
 import 'package:food_guardian/features/account_feature/presentation/account_view_model/update_email.dart';
 
 class EditProfileLogic extends StatefulWidget {
-  EditProfileLogic({super.key});
+  const EditProfileLogic({super.key});
 
   @override
   State<EditProfileLogic> createState() => _EditProfileLogicState();

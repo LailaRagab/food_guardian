@@ -3,8 +3,6 @@ class RecipeDetailsModel {
   RecipeDetailsModel({required this.step});
   factory RecipeDetailsModel.factoryRecipeDetailsModel(
       Map<String, dynamic> json) {
-    return RecipeDetailsModel(
-      step: json["step"] ?? "",
-    );
+    return RecipeDetailsModel(step: json["step"]);
   }
 }

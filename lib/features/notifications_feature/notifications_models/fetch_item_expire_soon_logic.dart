@@ -5,7 +5,7 @@ import 'package:food_guardian/features/inventory_feature/models/card_itme_model.
 import 'package:food_guardian/features/notifications_feature/notifications_models/store_notifications_using_hive.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/for_passing_expire_ingredient.dart';
 import 'package:hive/hive.dart';
-import '../../notifications_models/notifications_services.dart';
+import 'notifications_services.dart';
 
 class FetchItemExpireSoonLogic {
   static Future<void> fetchItemExpireSoonFun() async {

@@ -4,15 +4,17 @@ import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
 
 class CustomAddingItemTextField extends StatelessWidget {
-  CustomAddingItemTextField({
+  const CustomAddingItemTextField({
     super.key,
     required this.hint,
     required this.onSubmitted,
     this.getName,
   });
+
   final String? getName;
   final String hint;
   final Function(String) onSubmitted;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(

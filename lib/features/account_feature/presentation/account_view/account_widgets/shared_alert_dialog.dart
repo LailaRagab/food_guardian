@@ -37,6 +37,5 @@ class SharedAlertDialog extends StatelessWidget {
             text: "Cancel"),
       ],
     );
-    ;
   }
 }

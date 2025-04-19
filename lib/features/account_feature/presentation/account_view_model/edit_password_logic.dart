@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:food_guardian/core/utils/snack_bar.dart';
 import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/shared_alert_dialog.dart';
 import 'package:food_guardian/features/account_feature/presentation/account_view_model/change_pass_update_button_logic.dart';
 

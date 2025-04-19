@@ -16,7 +16,9 @@ class RecipeCardInfo extends StatelessWidget {
       children: [
         CustomText(text: recipe.name, style: AppFonts.fontBlack18),
         const SizedBox(height: 6),
-        RecipeCardInfoMatchRow(),
+        RecipeCardInfoMatchRow(
+          recipe: recipe,
+        ),
         const SizedBox(height: 10),
         if (recipe.missIngredients != null &&
             (recipe.missIngredients as List).isNotEmpty)

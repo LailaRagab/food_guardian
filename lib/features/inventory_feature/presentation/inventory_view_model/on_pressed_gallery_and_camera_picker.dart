@@ -26,6 +26,5 @@ class OnPressedGalleryAndCameraPicker {
 
   void takedImageSet(FileImage? takedImage) {
     takedImage = takedImage;
-    print(takedImage);
   }
 }

@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
+import 'package:food_guardian/core/utils/snack_bar.dart';
 import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_api_service_logic.dart';
-
 import '../../../../core/utils/constants/constants.dart';
-import '../../../barcode_reader_feature/presentation/barcode_view_model/custom_show_snak_bar.dart';
 import '../../recipes_models/recipe_details_model.dart';
 
 class RecipeDetailsApiService {
@@ -19,16 +18,13 @@ class RecipeDetailsApiService {
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> dataField = response.data;
+        final dynamic dataField = response.data;
         if (dataField.isNotEmpty) {
           final List<dynamic> stepsDataField = dataField[0]['steps'];
           List<RecipeDetailsModel> recipeSteps = stepsDataField
               .map((item) => RecipeDetailsModel.factoryRecipeDetailsModel(item))
               .toList();
-          print(recipeSteps.isNotEmpty);
           return recipeSteps;
-        } else {
-          return [];
         }
       } else {
         throw Exception("Failed to fetch recipe: ${response.statusMessage}");
@@ -36,14 +32,20 @@ class RecipeDetailsApiService {
     } on DioException catch (ex) {
       final badResponse = ex.response?.statusMessage;
       if (badResponse == "Not Found" && context.mounted) {
-        ShowSnackBarHandlingBarcodeReader.customSnackBarAction(context);
+        snackBar(
+            context, "Sorry, there is no instructions of this recipe", null);
+        return []; // Don't throw again
+      } else if (context.mounted) {
+        snackBar(context, "There is a network error, please try again", null);
+        return [];
       }
     } catch (e) {
       if (context.mounted) {
-        ShowSnackBarHandlingBarcodeReader.snackBarForOtherErrorsTypes(context);
+        snackBar(context, "There is an error, please try again", null);
+        return [];
       }
     }
-
-    throw Exception("Failed to fetch recipe");
+    // We should never reach here, but just in case
+    return [];
   }
 }

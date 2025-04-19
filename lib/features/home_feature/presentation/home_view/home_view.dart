@@ -8,7 +8,7 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import '../../../recipes_feature/presentation/recipes_view/recipes_view.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({super.key});
+  const HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();

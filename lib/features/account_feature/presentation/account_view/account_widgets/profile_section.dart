@@ -9,7 +9,7 @@ import '../../../../../core/widgets/custom_text.dart';
 class ProfileSection extends StatelessWidget {
   final VoidCallback onProfileUpdated;
 
-  ProfileSection({super.key, required this.onProfileUpdated});
+  const ProfileSection({super.key, required this.onProfileUpdated});
 
   @override
   Widget build(BuildContext context) {

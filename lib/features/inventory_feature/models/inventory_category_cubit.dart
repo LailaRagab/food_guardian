@@ -29,7 +29,8 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
         emit(InventoryAvailableDataState(itemsList2: itemsList1));
       });
     } on Exception catch (e) {
-      emit(InventoryErrorState(errorMessage: 'There is an error'));
+      emit(InventoryErrorState(
+          errorMessage: 'There is an error, ${e.toString()}'));
     }
   }
 
@@ -43,7 +44,7 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
           .delete();
     } on Exception catch (e) {
       emit(InventoryItemFailedToDeletedState(
-          errorMessage: "Failed to delete item"));
+          errorMessage: "Failed to delete item, ${e.toString}"));
     }
   }
 

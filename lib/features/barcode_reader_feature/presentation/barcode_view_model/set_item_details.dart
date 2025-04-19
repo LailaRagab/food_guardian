@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view_model/write_on_firestore_logic.dart';
 
@@ -20,7 +20,8 @@ class SetItemDetails {
           matchedItem.itemImage,
           matchedItem.itemBarcode);
     } on Exception catch (e) {
-      snackBar(context, "Item not stored please try again!", null);
+      snackBar(
+          context, "Item not stored please try again!, ${e.toString}", null);
     }
   }
 }

@@ -1,47 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:food_guardian/features/recipes_feature/presentation/recipes_view/recieps_widgets/recipe_details_view_time.dart';
+import 'package:food_guardian/core/utils/assets/colors.dart';
+import 'package:food_guardian/features/recipes_feature/recipes_models/for_passing_shared_data_for_recipes_feature.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/recipe_details_model.dart';
-
 import '../../../../../core/utils/assets/fonts.dart';
 import '../../../../../core/widgets/custom_text.dart';
-import '../../recipes_view_model/recipe_details_view_ingredients_section_logic.dart';
 import '../../recipes_view_model/recipe_details_view_instructions_section_logic.dart';
-import 'built_icon_info.dart';
 import 'custom_clip_r_rect.dart';
 
 class RecipeDetailsViewContentColumn extends StatelessWidget {
-  RecipeDetailsViewContentColumn({
+  const RecipeDetailsViewContentColumn({
     super.key,
+    required this.stepsList,
   });
-  RecipeDetailsModel? details;
+
+  final List<RecipeDetailsModel> stepsList;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomClipRRect(),
+        CustomClipRRect(
+          imageUrl: ForPassingSharedDataForRecipesFeature.obj.getImage,
+        ),
         const SizedBox(height: 20),
-        CustomText(text: "Spaghetti Carbonara", style: AppFonts.font26),
-        // const SizedBox(height: 10),
-        // RecipeDetailsViewTime(),
-        // const SizedBox(height: 30),
-        // CustomText(text: "Ingredients", style: AppFonts.font20Black),
-        // const SizedBox(height: 12),
-        // RecipeDetailsViewIngredientsSectionLogic.buildIngredientsList([
-        //   "200g spaghetti",
-        //   "2 large eggs",
-        //   "100g pancetta",
-        //   "50g grated cheese",
-        //   "Salt & pepper to taste",
-        // ]),
+        CustomText(
+            text: ForPassingSharedDataForRecipesFeature.obj.getTitle ?? "",
+            style: AppFonts.font26.copyWith(color: AppColors.kPrimary)),
         const SizedBox(height: 30),
         CustomText(text: "Instructions", style: AppFonts.font20Black),
         const SizedBox(height: 12),
-        if (details != null)
-          RecipeDetailsViewInstructionsSectionLogic.buildStepsList(
-              [details!.step])
-        else
-          const Text("No instructions available"),
+
+        // Use the steps here
+        RecipeDetailsViewInstructionsSectionLogic.buildStepsList(
+          stepsList.map((e) => e.step).toList(),
+        ),
       ],
     );
   }

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/custom_add_manually_bottom_sheet.dart';
@@ -8,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/assets/colors.dart';
 
 class AddButton extends StatelessWidget {
-  AddButton({super.key});
+  const AddButton({super.key});
 
   @override
   Widget build(BuildContext context) {

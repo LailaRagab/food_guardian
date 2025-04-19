@@ -3,7 +3,7 @@ import 'package:food_guardian/core/utils/assets/colors.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
 
 class CustomDropDownButton extends StatelessWidget {
-  CustomDropDownButton({
+  const CustomDropDownButton({
     super.key,
     required this.onChanged,
   });

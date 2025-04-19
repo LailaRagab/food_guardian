@@ -21,14 +21,14 @@ class RowOfNameAndQuantity extends StatelessWidget {
         SizedBox(
           width: textLabelSize,
           child: Text(
-            "$textLabel",
+            textLabel,
             style: AppFonts.font16,
           ),
         ),
         SizedBox(width: 2),
         Expanded(
           child: Text(
-            "$input",
+            input,
             style: AppFonts.font14.copyWith(color: AppColors.kDarkGrey),
             overflow: TextOverflow.ellipsis,
             maxLines: numLines,

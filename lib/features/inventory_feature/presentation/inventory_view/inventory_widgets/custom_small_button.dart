@@ -3,7 +3,7 @@ import 'package:food_guardian/core/utils/assets/colors.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
 
 class CustomSmallButton extends StatelessWidget {
-  CustomSmallButton({
+  const CustomSmallButton({
     super.key,
     this.onTap,
   });

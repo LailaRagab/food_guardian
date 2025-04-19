@@ -1,17 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/utils/snack_bar.dart';
-import 'package:food_guardian/features/account_feature/presentation/account_view/account_widgets/profile_photo_account.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view/register_widgets/profile_photo_register.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_cubit.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../../../../core/widgets/common_button.dart';
 import 'auth_custom_text_field.dart';
 
 class RegisterBody extends StatefulWidget {
-  RegisterBody({
+  const RegisterBody({
     super.key,
   });
 

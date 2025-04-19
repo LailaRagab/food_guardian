@@ -24,6 +24,5 @@ class CustomAddManuallyBottomSheet extends StatelessWidget {
               ),
             ]),
         child: CustomAddManuallyBottomSheetDetails());
-    ;
   }
 }

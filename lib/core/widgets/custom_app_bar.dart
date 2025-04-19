@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_guardian/core/utils/assets/images.dart';
 import 'package:food_guardian/core/widgets/title_app_bar_screens.dart';
 
 import '../utils/assets/colors.dart';
