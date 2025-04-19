@@ -25,7 +25,6 @@ class AuthCustomTextFormField extends StatelessWidget {
         if (anyInput!.isEmpty) {
           return "Field is required";
         }
-        return "";
       },
       cursorColor: AppColors.kHintText,
       onChanged: onChanged,
