@@ -2,16 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/extensions/date_format_extension.dart';
-import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/row_of_name_and_quantity_.dart';
 import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
 import '../../../../../core/utils/assets/images.dart';
+import '../../../inventory_models/card_itme_model.dart';
 
 class ItemCardDetails extends StatelessWidget {
   const ItemCardDetails({super.key, required this.model});
 
   final CardItemModel model;
+
   @override
   Widget build(BuildContext context) {
     return Row(

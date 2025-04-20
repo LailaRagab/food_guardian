@@ -1,10 +1,10 @@
 // 2
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
 import 'package:food_guardian/features/notifications_feature/notifications_models/store_notifications_using_hive.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/for_passing_expire_ingredient.dart';
 import 'package:hive/hive.dart';
+import '../../inventory_feature/inventory_models/card_itme_model.dart';
 import 'notifications_services.dart';
 
 class FetchItemExpireSoonLogic {
@@ -44,7 +44,7 @@ class FetchItemExpireSoonLogic {
           await NotificationService.scheduleNotification(
             id: id,
             title: "⚠️ $name expires in $daysUntilExpiry day(s)!",
-            body: "Tap to check your $category",
+            body: "Check your $category",
             scheduledDate: expiryDateOnly, // adjust if needed
           );
           ForPassingExpireIngredient.instance.addIngredient(name);

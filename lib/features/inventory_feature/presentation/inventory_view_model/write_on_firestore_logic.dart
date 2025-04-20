@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/helpers/helper_for_fetch_fun.dart';
 import '../../../notifications_feature/notifications_models/for_passing_switch_state.dart';
 import '../../../notifications_feature/notifications_models/store_notifications_using_hive.dart';
-import '../../models/card_itme_model.dart';
+import '../../inventory_models/card_itme_model.dart';
 
 class WriteOnFireStoreLogic {
   static void buildAddItemsToFirestore(
-    BuildContext context,
-    String category,
-    String? name,
-    String? quantity,
-    DateTime selectedExpirationDate,
-    String? image,
-    String? barcode,
-  ) {
+      BuildContext context,
+      String category,
+      String? name,
+      String? quantity,
+      DateTime selectedExpirationDate,
+      String? image,
+      String? barcode,
+      bool isUsed) {
     CollectionReference inventoryCollection = FirebaseFirestore.instance
         .collection(CardItemModel.collectionName)
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -35,6 +35,7 @@ class WriteOnFireStoreLogic {
       itemExpirationDate: selectedExpirationDate,
       itemImage: image,
       itemBarcode: barcode,
+      itemIsUsed: isUsed,
     );
     documentReference.set(cardItemModel.toJson());
     Navigator.pop(context);

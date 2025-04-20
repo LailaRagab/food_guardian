@@ -5,11 +5,11 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import '../../../../core/utils/helpers/helper_for_fetch_fun.dart';
 import '../../../notifications_feature/notifications_models/for_passing_switch_state.dart';
 import '../../../notifications_feature/notifications_models/store_notifications_using_hive.dart';
-import '../../models/card_itme_model.dart';
+import '../../inventory_models/card_itme_model.dart';
+import '../../inventory_models/inventory_category_cubit.dart';
 import '../inventory_view/inventory_widgets/alert_dialog_text_button.dart';
 import '../inventory_view/inventory_widgets/custom_show_my_date_picker_widget.dart';
 import '../inventory_view/inventory_widgets/text_field_edit_dialog.dart';
-import '../../models/inventory_category_cubit.dart';
 
 class EditLogic {
   EditLogic({required this.item})

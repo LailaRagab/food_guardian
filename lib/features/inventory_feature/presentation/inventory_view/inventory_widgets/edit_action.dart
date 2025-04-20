@@ -3,7 +3,7 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 
 import '../../../../../core/utils/assets/colors.dart';
 import '../../../../../core/utils/assets/fonts.dart';
-import '../../../models/card_itme_model.dart';
+import '../../../inventory_models/card_itme_model.dart';
 
 class EditAction extends StatelessWidget {
   EditAction(
@@ -34,6 +34,9 @@ class EditAction extends StatelessWidget {
             color: AppColors.kWhite,
             size: 30,
           ),
+        ),
+        SizedBox(
+          height: 10,
         ),
         Text(
           "Edit",

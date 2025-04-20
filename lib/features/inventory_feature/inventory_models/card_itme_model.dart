@@ -8,6 +8,7 @@ class CardItemModel {
   final DateTime itemExpirationDate;
   final String? itemImage;
   final String? itemBarcode;
+  bool itemIsUsed;
   // final String? itemImageAPI;
 
   CardItemModel({
@@ -17,20 +18,22 @@ class CardItemModel {
     required this.docIDForDeleteAndEdit,
     required this.itemImage,
     required this.itemBarcode,
+    required this.itemIsUsed,
   });
 
   // Updated factory constructor to accept a QueryDocumentSnapshot directly
   factory CardItemModel.fromJson(QueryDocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>; // Extract data properly
     return CardItemModel(
-      docIDForDeleteAndEdit: doc.id, // Use document ID
-      itemName: data["name"],
-      itemQuantity: data["quantity"],
-      itemExpirationDate: (data["exDate"] as Timestamp).toDate(),
-      itemImage: data["image"],
-      itemBarcode: data["barcode"],
-      // itemImageAPI: data["imageAPI"]
-    );
+        docIDForDeleteAndEdit: doc.id, // Use document ID
+        itemName: data["name"],
+        itemQuantity: data["quantity"],
+        itemExpirationDate: (data["exDate"] as Timestamp).toDate(),
+        itemImage: data["image"],
+        itemBarcode: data["barcode"],
+        itemIsUsed: data["isUsed"] ?? false
+        // itemImageAPI: data["imageAPI"]
+        );
   }
 
   Map<String, dynamic> toJson() {
@@ -41,6 +44,7 @@ class CardItemModel {
       "exDate": itemExpirationDate,
       "image": itemImage,
       "barcode": itemBarcode,
+      "isUsed": itemIsUsed,
     };
   }
 }

@@ -1,4 +1,4 @@
-import 'package:food_guardian/features/inventory_feature/models/card_itme_model.dart';
+import 'card_itme_model.dart';
 
 class InventoryCategoryStates {}
 

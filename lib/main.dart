@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/utils/app_router.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_cubit.dart';
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view_model/sign_in_cubit/sign_in_cubit.dart';
-import 'package:food_guardian/features/inventory_feature/models/inventory_category_cubit.dart';
 import 'package:hive_flutter/adapters.dart';
 
+import 'features/inventory_feature/inventory_models/inventory_category_cubit.dart';
 import 'features/notifications_feature/notifications_models/notifications_services.dart';
 import 'features/notifications_feature/notifications_models/store_notifications_using_hive.dart';
 import 'firebase_options.dart'; //import for this DefaultFirebaseOptions

@@ -26,6 +26,9 @@ class DeleteAction extends StatelessWidget {
             size: 30,
           ),
         ),
+        SizedBox(
+          height: 10,
+        ),
         Text(
           "Delete",
           style: AppFonts.font14,

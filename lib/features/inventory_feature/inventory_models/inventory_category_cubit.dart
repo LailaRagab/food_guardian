@@ -1,12 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_guardian/features/inventory_feature/models/inventory_category_states.dart';
+import 'package:food_guardian/features/dashboard_feature/dashboard_models/for_passing_item_state_to_dashboard.dart';
 
 import 'card_itme_model.dart';
+import 'inventory_category_states.dart';
 
 class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
   InventoryCategoryCubit() : super(InitialState());
+
+  final passingStatus =
+      ForPassingItemStateToDashboard.forPassingItemStateToDashboard;
 
   void readStoredItemsInInventoryCategory(String subCollection) {
     emit(InventoryLoadingState());
@@ -72,6 +76,49 @@ class InventoryCategoryCubit extends Cubit<InventoryCategoryStates> {
     } catch (e) {
       emit(InventoryItemFailedToEditState(
           errorMessage: "Failed to update item"));
+    }
+  }
+
+  Future<void> updateItemUsedStatus(
+      String subCollection, String docID, bool isUsed) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(CardItemModel.collectionName)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(subCollection)
+          .doc(docID)
+          .update({"isUsed": isUsed});
+    } catch (e) {
+      emit(InventoryItemFailedToEditState(
+          errorMessage: "Failed to update used status"));
+    }
+  }
+
+  Future<void> countAllUsedItemsAcrossCategories() async {
+    emit(InventoryLoadingState());
+    List<String> categories = ['Fridge', 'Freezer', 'Pantry'];
+    double count = 0;
+
+    try {
+      for (String category in categories) {
+        final inventoryCollection = FirebaseFirestore.instance
+            .collection(CardItemModel.collectionName)
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .collection(category);
+
+        final snapshot = await inventoryCollection.get(); // One-time read
+
+        for (var doc in snapshot.docs) {
+          final item = CardItemModel.fromJson(doc);
+          if (item.itemIsUsed == true) {
+            count++;
+          }
+        }
+      }
+      passingStatus.setUsedCount(count);
+    } on Exception catch (e) {
+      emit(InventoryErrorState(
+          errorMessage: 'There is an error: ${e.toString()}'));
     }
   }
 }

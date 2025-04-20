@@ -25,7 +25,7 @@ class APIService {
         }
         if (context.mounted) {
           WriteOnFireStoreLogic.buildAddItemsToFirestore(context, "Fridge",
-              name, quantity, selectedExpirationDate, image, barcode);
+              name, quantity, selectedExpirationDate, image, barcode, false);
         }
       }
     } on DioException catch (ex) {

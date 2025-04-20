@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/utils/assets/colors.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/add_buttons.dart';
@@ -9,6 +10,7 @@ import 'package:food_guardian/features/inventory_feature/presentation/inventory_
 import '../../../../core/utils/helpers/helper_for_fetch_fun.dart';
 import '../../../notifications_feature/notifications_models/for_passing_switch_state.dart';
 import '../../../notifications_feature/notifications_models/store_notifications_using_hive.dart';
+import '../../inventory_models/inventory_category_cubit.dart';
 
 class InventoryView extends StatefulWidget {
   const InventoryView({super.key});
@@ -24,6 +26,8 @@ class _InventoryViewState extends State<InventoryView> {
     if (ForPassingSwitchState.instance.getSwitchValue) {
       scheduleAllNotifications();
     }
+    BlocProvider.of<InventoryCategoryCubit>(context)
+        .countAllUsedItemsAcrossCategories();
     super.initState();
   }
 

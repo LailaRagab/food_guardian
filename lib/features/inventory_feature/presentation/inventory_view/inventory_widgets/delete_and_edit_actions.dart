@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_widgets/delete_and_edit_details.dart';
 
 import '../../../../../core/utils/assets/colors.dart';
-import '../../../models/card_itme_model.dart';
+import '../../../inventory_models/card_itme_model.dart';
 
 class DeleteAndEditActions extends StatelessWidget {
   const DeleteAndEditActions(

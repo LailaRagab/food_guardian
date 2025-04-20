@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/widgets/custom_app_bar.dart';
 import 'package:food_guardian/core/widgets/custom_bottom_navigation_bar.dart';
 import 'package:food_guardian/features/account_feature/presentation/account_view/account_view.dart';
 import 'package:food_guardian/features/dashboard_feature/presentation/dashboard_view/dashboard_view.dart';
 import 'package:food_guardian/features/inventory_feature/presentation/inventory_view/inventory_view.dart';
 
+import '../../../inventory_feature/inventory_models/inventory_category_cubit.dart';
 import '../../../recipes_feature/presentation/recipes_view/recipes_view.dart';
 
 class HomeView extends StatefulWidget {

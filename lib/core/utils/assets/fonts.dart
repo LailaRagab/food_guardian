@@ -37,6 +37,7 @@ class AppFonts {
     fontWeight: FontWeight.bold,
     color: AppColors.kWhite,
   );
+
   static TextStyle font12 = TextStyle(
     fontSize: 12,
     color: AppColors.kDarkGrey,

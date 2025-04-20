@@ -93,14 +93,14 @@ class _CustomAddManuallyBottomSheetDetailsState
                 CustomSmallButton(onTap: () {
                   if (formKey.currentState!.validate()) {
                     WriteOnFireStoreLogic.buildAddItemsToFirestore(
-                      context,
-                      category,
-                      name!,
-                      quantity,
-                      selectedExpirationDate!,
-                      image,
-                      null,
-                    );
+                        context,
+                        category,
+                        name!,
+                        quantity,
+                        selectedExpirationDate!,
+                        image,
+                        null,
+                        false);
                   }
                 }),
               ],
