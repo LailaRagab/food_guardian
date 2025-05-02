@@ -3,6 +3,34 @@ class ForPassingItemStateToDashboard {
   double? usedCount;
   double? expiredCount;
   double? expireSoonCount;
+  int? totalItems;
+  int? fridgeCount;
+  int? freezerCount;
+  int? pantryCount;
+
+  int? get getFridgeCount => fridgeCount;
+
+  void setFridgeCount(int value) {
+    fridgeCount = value;
+  }
+
+  int? get getFreezerCount => freezerCount;
+
+  void setFreezerCount(int value) {
+    freezerCount = value;
+  }
+
+  int? get getPantryCount => pantryCount;
+
+  void setPantryCount(int value) {
+    pantryCount = value;
+  }
+
+  int? get getTotalItems => totalItems;
+
+  void setTotalItems(int value) {
+    totalItems = value;
+  }
 
   static ForPassingItemStateToDashboard forPassingItemStateToDashboard =
       ForPassingItemStateToDashboard();

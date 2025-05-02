@@ -4,28 +4,14 @@ import 'package:food_guardian/features/dashboard_feature/dashboard_models/for_pa
 import 'package:food_guardian/features/dashboard_feature/presentation/dashboard_view/dashboard_widgets/dashboard_bar_chart_bottom_title.dart';
 
 class DashboardBarChar extends StatefulWidget {
-  const DashboardBarChar({super.key});
-
+  DashboardBarChar({super.key});
+  final passingStatus =
+      ForPassingItemStateToDashboard.forPassingItemStateToDashboard;
   @override
   State<DashboardBarChar> createState() => _DashboardBarCharState();
 }
 
 class _DashboardBarCharState extends State<DashboardBarChar> {
-  // var passingStatus =
-  //     ForPassingItemStateToDashboard.forPassingItemStateToDashboard;
-  // double? usedToy;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   updateUsedToy();
-  // }
-  //
-  // void updateUsedToy() {
-  //   setState(() {
-  //     usedToy = passingStatus.getUsedCount ?? 0;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BarChart(
@@ -35,27 +21,26 @@ class _DashboardBarCharState extends State<DashboardBarChar> {
             x: 0,
             barRods: [
               BarChartRodData(
-                toY: 3, // Fresh
+                toY: widget.passingStatus.getFreshCount ?? 0, // Fresh
                 color: Colors.blue,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),
               ),
               BarChartRodData(
-                toY: ForPassingItemStateToDashboard
-                        .forPassingItemStateToDashboard.getUsedCount ??
-                    0, // Used
+                toY: widget.passingStatus.getUsedCount ?? 0, // Used
                 color: Colors.green,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),
               ),
               BarChartRodData(
-                toY: 4, // Expired
+                toY: widget.passingStatus.getExpiredCount ?? 0, // Expired
                 color: Colors.red,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),
               ),
               BarChartRodData(
-                toY: 3, // Expiring Soon
+                toY: widget.passingStatus.getExpireSoonCount ??
+                    0, // Expiring Soon
                 color: Colors.orange,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),

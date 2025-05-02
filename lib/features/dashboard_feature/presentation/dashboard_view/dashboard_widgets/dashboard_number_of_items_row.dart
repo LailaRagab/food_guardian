@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_guardian/features/dashboard_feature/dashboard_models/for_passing_item_state_to_dashboard.dart';
 
 import 'dashboard_number_of_items_in_inventory.dart';
 
 class DashboardNumberOfItemsRow extends StatelessWidget {
-  const DashboardNumberOfItemsRow({super.key});
-
+  DashboardNumberOfItemsRow({super.key});
+  final passingStatus =
+      ForPassingItemStateToDashboard.forPassingItemStateToDashboard;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -12,21 +14,24 @@ class DashboardNumberOfItemsRow extends StatelessWidget {
       children: [
         DashboardNumberOfItemsInInventory(
             label: "Total Items",
-            count: 7,
+            count: passingStatus.totalItems ?? 0,
             icon: Icons.inventory,
             color: Colors.yellow),
         DashboardNumberOfItemsInInventory(
             label: "Fridge",
-            count: 8,
+            count: passingStatus.getFridgeCount ?? 0,
             icon: Icons.kitchen,
             color: Colors.lightBlue),
         DashboardNumberOfItemsInInventory(
             label: "Freezer",
-            count: 5,
+            count: passingStatus.getFreezerCount ?? 0,
             icon: Icons.ac_unit,
             color: Colors.indigo),
         DashboardNumberOfItemsInInventory(
-            label: "Pantry", count: 3, icon: Icons.shelves, color: Colors.brown)
+            label: "Pantry",
+            count: passingStatus.getPantryCount ?? 0,
+            icon: Icons.shelves,
+            color: Colors.brown)
       ],
     );
   }

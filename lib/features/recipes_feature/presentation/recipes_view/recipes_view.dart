@@ -17,7 +17,6 @@ class _RecipesViewState extends State<RecipesView> {
   List<RecipesModel> recipes = [];
   List<DetectTextInFoodModel> detectFoodList = [];
 
-  bool isLoading = true;
   @override
   void initState() {
     getRecipes();
