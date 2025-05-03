@@ -9,7 +9,7 @@ import 'api_service.dart';
 
 class SearchOnFirestore {
   static Future searchOnFirestore(String barcode, BuildContext context,
-      DateTime selectedExpirationDate) async {
+      DateTime selectedExpirationDate, String getCategory) async {
     List<String> categories = ["Fridge", "Freezer", "Pantry"];
     String? category;
     bool isDuplicate = false;
@@ -35,7 +35,8 @@ class SearchOnFirestore {
     }
 
     if (!isDuplicate) {
-      APIService.fetchItemFromAPIs(context, barcode, selectedExpirationDate);
+      APIService.fetchItemFromAPIs(
+          context, barcode, selectedExpirationDate, getCategory);
     }
   }
 }

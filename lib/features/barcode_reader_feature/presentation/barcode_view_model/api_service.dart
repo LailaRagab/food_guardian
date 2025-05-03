@@ -8,7 +8,7 @@ class APIService {
   static String base = "https://world.openfoodfacts.net/api/v2";
   static var dio = Constants.dio;
   static Future fetchItemFromAPIs(BuildContext context, String barcode,
-      DateTime selectedExpirationDate) async {
+      DateTime selectedExpirationDate, String category) async {
     try {
       Response response = await dio.get("$base/product/$barcode");
       if (response.statusCode == 200) {
@@ -24,7 +24,7 @@ class APIService {
           }
         }
         if (context.mounted) {
-          WriteOnFireStoreLogic.buildAddItemsToFirestore(context, "Fridge",
+          WriteOnFireStoreLogic.buildAddItemsToFirestore(context, category,
               name, quantity, selectedExpirationDate, image, barcode, false);
         }
       }

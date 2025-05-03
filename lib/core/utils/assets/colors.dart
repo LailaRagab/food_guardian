@@ -18,4 +18,6 @@ class AppColors {
   static Color kRecipesDetailsBg = Color(0xFFF6F6F6);
   static Color kOrange = Colors.orange;
   static Color kTeal = Colors.teal;
+  static Color kBlue = Colors.blueAccent;
+  static Color kGreen = Colors.green;
 }

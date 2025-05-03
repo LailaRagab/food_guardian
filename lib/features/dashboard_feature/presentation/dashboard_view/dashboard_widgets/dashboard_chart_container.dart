@@ -16,7 +16,7 @@ class _DashboardChartContainerState extends State<DashboardChartContainer> {
     return Container(
         height: 300,
         decoration: BoxDecoration(
-          color: AppColors.kPrimary.withOpacity(0.3),
+          color: AppColors.kWhite.withOpacity(0.3),
           borderRadius: BorderRadius.circular(12),
         ),
         child: DashboardBarChar());

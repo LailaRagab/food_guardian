@@ -15,7 +15,7 @@ class EditLogic {
   EditLogic({required this.item})
       : nameController = TextEditingController(text: item.itemName),
         quantityController = TextEditingController(text: item.itemQuantity),
-        oldImage = item.itemImage ?? AppImages.logoIcon,
+        oldImage = item.itemImage,
         editUploadPhoto = EditUploadPhoto();
 
   String? oldImage;
@@ -25,7 +25,7 @@ class EditLogic {
   late EditUploadPhoto editUploadPhoto;
 
   late DateTime updatedExDate;
-  late String? image;
+  String? image;
 
   get nameControllerGet => nameController;
   get quantityControllerGet => quantityController;
@@ -77,7 +77,6 @@ class EditLogic {
                   if (formKey.currentState!.validate()) {
                     // Update with the picked image or old image
                     image = editUploadPhoto.forImage ?? oldImage;
-
                     BlocProvider.of<InventoryCategoryCubit>(context).updateItem(
                       subCategory,
                       docID,

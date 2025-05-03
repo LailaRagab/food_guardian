@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:food_guardian/core/utils/assets/colors.dart';
 import 'package:food_guardian/features/dashboard_feature/dashboard_models/for_passing_item_state_to_dashboard.dart';
 import 'package:food_guardian/features/dashboard_feature/presentation/dashboard_view/dashboard_widgets/dashboard_bar_chart_bottom_title.dart';
 
@@ -22,26 +23,26 @@ class _DashboardBarCharState extends State<DashboardBarChar> {
             barRods: [
               BarChartRodData(
                 toY: widget.passingStatus.getFreshCount ?? 0, // Fresh
-                color: Colors.blue,
+                color: AppColors.kBlue,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),
               ),
               BarChartRodData(
                 toY: widget.passingStatus.getUsedCount ?? 0, // Used
-                color: Colors.green,
+                color: AppColors.kGreen,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),
               ),
               BarChartRodData(
                 toY: widget.passingStatus.getExpiredCount ?? 0, // Expired
-                color: Colors.red,
+                color: AppColors.kRed,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),
               ),
               BarChartRodData(
                 toY: widget.passingStatus.getExpireSoonCount ??
                     0, // Expiring Soon
-                color: Colors.orange,
+                color: AppColors.kOrange,
                 width: 25,
                 borderRadius: BorderRadius.circular(4),
               ),
@@ -64,7 +65,7 @@ class _DashboardBarCharState extends State<DashboardBarChar> {
           topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
           rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         ),
-        borderData: FlBorderData(show: false),
+        borderData: FlBorderData(show: true),
       ),
     );
   }

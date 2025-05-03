@@ -64,13 +64,30 @@ class ItemCardDetails extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
-          child: model.itemImage != null
-              ? model.itemImage!.startsWith('http')
-                  ? Image.network(model
-                      .itemImage!) // If it starts with 'http', treat it as a URL
-                  : Image.file(File(
-                      model.itemImage!)) // Otherwise, treat it as a file path
-              : Image.asset(AppImages.logoIcon),
+          child: Builder(
+            builder: (_) {
+              final img = model.itemImage;
+
+              if (img == null || img.isEmpty) {
+                return Image.asset(AppImages.logoIcon);
+              }
+
+              if (img.startsWith('http')) {
+                return Image.network(img);
+              }
+
+              final file = File(img);
+              if (file.existsSync()) {
+                return Image.file(file);
+              } else {
+                return Image.asset(
+                  AppImages.logoIcon,
+                  errorBuilder: (_, __, ___) =>
+                      const Icon(Icons.image_not_supported),
+                );
+              }
+            },
+          ),
         )
       ],
     );
