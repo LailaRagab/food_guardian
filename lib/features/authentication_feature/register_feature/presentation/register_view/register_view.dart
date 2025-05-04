@@ -23,7 +23,7 @@ class RegisterView extends StatelessWidget {
           GoRouter.of(context).push("/home");
           isLoaded = false;
         } else if (state is FailureState) {
-          snackBar(context, state.errorMeassage, null);
+          snackBar(context, state.errorMessage, null);
           isLoaded = false;
         }
       },

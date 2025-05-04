@@ -19,21 +19,21 @@ class RegisterCubit extends Cubit<RegisterStates> {
       await credential.user?.reload();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        emit(FailureState(errorMeassage: 'The password provided is too weak.'));
+        emit(FailureState(errorMessage: 'The password provided is too weak.'));
       } else if (e.code == 'email-already-in-use') {
         emit(FailureState(
-            errorMeassage: 'The account already exists for that email.'));
+            errorMessage: 'The account already exists for that email.'));
       } else if (e.code == 'network-request-failed') {
         emit(FailureState(
-            errorMeassage: 'Please check your internet connection.'));
+            errorMessage: 'Please check your internet connection.'));
       } else if (e.code == 'too-many-requests') {
         emit(FailureState(
-            errorMeassage: 'Too many failed attempts. Try again later.'));
+            errorMessage: 'Too many failed attempts. Try again later.'));
       } else if (e.code == 'invalid-email') {
-        emit(FailureState(errorMeassage: 'The email format is invalid.'));
+        emit(FailureState(errorMessage: 'The email format is invalid.'));
       }
     } catch (e) {
-      emit(FailureState(errorMeassage: "There is an error"));
+      emit(FailureState(errorMessage: "There is an error"));
     }
   }
 }

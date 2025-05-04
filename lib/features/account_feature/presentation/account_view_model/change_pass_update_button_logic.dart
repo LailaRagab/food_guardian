@@ -16,13 +16,12 @@ class ChangePassUpdateButtonLogic {
             email: user!.email!, password: oldPassController.text);
         try {
           if (confirmNewPassController.text == newPassController.text) {
-            await user?.updatePassword(newPassController.text);
-            await user?.reload();
+            await user.updatePassword(newPassController.text);
+            await user.reload();
           } else {
             if (context.mounted) {
               snackBar(context, "Passwords do not match!", null);
             }
-            ;
           }
         } on FirebaseAuthException catch (ex) {
           if (ex.code == 'weak-password') {

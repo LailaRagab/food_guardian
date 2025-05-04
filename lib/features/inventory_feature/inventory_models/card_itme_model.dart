@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_guardian/core/utils/assets/images.dart';
 
 class CardItemModel {
   static String collectionName = "InventoryCollection";

@@ -7,6 +7,6 @@ class LoadingState extends RegisterStates {}
 class SuccessState extends RegisterStates {}
 
 class FailureState extends RegisterStates {
-  String errorMeassage;
-  FailureState({required this.errorMeassage});
+  String errorMessage;
+  FailureState({required this.errorMessage});
 }

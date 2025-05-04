@@ -18,8 +18,16 @@ class SplashBody extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        Positioned(bottom: 127,left: 0, right: 0, child: CommonButton(onTap: () {GoRouter.of(context).push("/register");},)),
-        Positioned( bottom: 60,left: 0, right: 0,child: SplashSignInButton())
+        Positioned(
+            bottom: 127,
+            left: 0,
+            right: 0,
+            child: CommonButton(
+              onTap: () {
+                GoRouter.of(context).push("/register");
+              },
+            )),
+        Positioned(bottom: 60, left: 0, right: 0, child: SplashSignInButton())
       ],
     );
   }

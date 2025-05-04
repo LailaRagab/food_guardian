@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/assets/fonts.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../../core/utils/assets/colors.dart';
 
 class SplashSignInButton extends StatelessWidget {
-  const SplashSignInButton({super.key,});
+  const SplashSignInButton({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +23,9 @@ class SplashSignInButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(17),
           ),
           child: Center(
-              child: Text("Sign in", style: AppFonts.fontWhite20.copyWith(color: AppColors.kPrimary))
-          ),
+              child: Text("Sign in",
+                  style: AppFonts.fontWhite20
+                      .copyWith(color: AppColors.kPrimary))),
         ),
       ),
     );

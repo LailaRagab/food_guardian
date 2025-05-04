@@ -46,10 +46,12 @@ class _CustomUploadPhotoAlertDialogState
                   takedImage = picker.image;
                 });
                 widget.onImagePicked(takedImage);
-                Navigator.pop(context);
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               },
             ),
-            CustomUploadPhotoAptionsText(text: "Gallery"),
+            CustomUploadPhotoText(text: "Gallery"),
             SizedBox(
               height: 40,
             ),
@@ -65,10 +67,12 @@ class _CustomUploadPhotoAlertDialogState
                   takedImage = picker.image;
                 });
                 widget.onImagePicked(takedImage);
-                Navigator.pop(context);
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               },
             ),
-            CustomUploadPhotoAptionsText(text: "Camera"),
+            CustomUploadPhotoText(text: "Camera"),
           ],
         )
       ],

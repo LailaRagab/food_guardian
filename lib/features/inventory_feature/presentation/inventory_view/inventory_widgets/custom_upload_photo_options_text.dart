@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets/fonts.dart';
 
-class CustomUploadPhotoAptionsText extends StatelessWidget {
-  const CustomUploadPhotoAptionsText({super.key, required this.text});
+class CustomUploadPhotoText extends StatelessWidget {
+  const CustomUploadPhotoText({super.key, required this.text});
 
   final String text;
 

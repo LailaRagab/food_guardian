@@ -20,8 +20,7 @@ class RecipeCardInfo extends StatelessWidget {
           recipe: recipe,
         ),
         const SizedBox(height: 10),
-        if (recipe.missIngredients != null &&
-            (recipe.missIngredients as List).isNotEmpty)
+        if ((recipe.missIngredients as List).isNotEmpty)
           RecipeCardInfoMissIngredients(recipe: recipe),
         RecipeCardInfoViewRecipeButton(
           recipe: recipe,

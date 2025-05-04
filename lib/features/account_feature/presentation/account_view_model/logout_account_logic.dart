@@ -13,7 +13,9 @@ class LogoutAccountLogic extends StatelessWidget {
         elevatedButtonText: "Yes",
         onPressedElevatedButton: () async {
           await GoRouter.of(context).push("/login");
-          Navigator.pop(context);
+          if (context.mounted) {
+            Navigator.pop(context);
+          }
         });
   }
 }

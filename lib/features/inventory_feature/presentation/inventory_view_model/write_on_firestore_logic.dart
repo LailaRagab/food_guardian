@@ -30,8 +30,8 @@ class WriteOnFireStoreLogic {
     DocumentReference documentReference = inventoryCollection.doc();
     CardItemModel cardItemModel = CardItemModel(
       docIDForDeleteAndEdit: documentReference.id,
-      itemName: name ?? null,
-      itemQuantity: quantity ?? null,
+      itemName: name,
+      itemQuantity: quantity,
       itemExpirationDate: selectedExpirationDate,
       itemImage: image,
       itemBarcode: barcode,

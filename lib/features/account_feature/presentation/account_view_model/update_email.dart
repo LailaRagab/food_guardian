@@ -22,23 +22,27 @@ class UpdateEmail {
       // Send verification link to new email
       await user.verifyBeforeUpdateEmail(emailController.text);
       await user.reload();
-
-      snackBar(
-          context,
-          "A verification link has been sent to ${emailController.text}. Please check your email.",
-          null);
-
-      snackBar(
-          context,
-          "Please log in again after verification to update your email",
-          SnackBarAction(
-              label: "Log In Again",
-              textColor: AppColors.kPrimary,
-              onPressed: () {
-                GoRouter.of(context).push("/login");
-              }));
+      if (context.mounted) {
+        snackBar(
+            context,
+            "A verification link has been sent to ${emailController.text}. Please check your email.",
+            null);
+      }
+      if (context.mounted) {
+        snackBar(
+            context,
+            "Please log in again after verification to update your email",
+            SnackBarAction(
+                label: "Log In Again",
+                textColor: AppColors.kPrimary,
+                onPressed: () {
+                  GoRouter.of(context).push("/login");
+                }));
+      }
     } on FirebaseAuthException catch (e) {
-      snackBar(context, "Error: ${e.message}", null);
+      if (context.mounted) {
+        snackBar(context, "Error: ${e.message}", null);
+      }
     }
   }
 }

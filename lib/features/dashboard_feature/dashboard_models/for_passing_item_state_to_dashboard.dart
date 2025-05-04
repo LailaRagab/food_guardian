@@ -46,7 +46,6 @@ class ForPassingItemStateToDashboard {
   void setUsedCount(double value) {
     usedCount = value;
   }
-  // Set <double> setUsedCount = usedCount;
 
   double? get getExpiredCount => expiredCount;
 

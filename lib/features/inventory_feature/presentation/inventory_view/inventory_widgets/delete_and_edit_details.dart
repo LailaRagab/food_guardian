@@ -7,7 +7,7 @@ import '../../../../../core/utils/assets/colors.dart';
 import '../../../inventory_models/card_itme_model.dart';
 
 class DeleteAndEditDetails extends StatefulWidget {
-  DeleteAndEditDetails({
+  const DeleteAndEditDetails({
     super.key,
     required this.subCategory,
     required this.docID,

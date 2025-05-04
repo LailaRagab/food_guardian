@@ -35,7 +35,7 @@ class FetchItemExpireSoonLogic {
       expireSoonCount += result['expireSoon'] ?? 0.0;
       expiredCount += result['expired'] ?? 0.0;
       freshCount += result['fresh'] ?? 0.0;
-      totalCount += result['total'] as int ?? 0;
+      totalCount += result['total'] as int;
 
       if (category == "Fridge") {
         fridgeCount = result['categoryCount'] ?? 0;
