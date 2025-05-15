@@ -20,8 +20,8 @@ class SplashBody extends StatelessWidget {
         ),
         Positioned(
             bottom: 127,
-            left: 0,
-            right: 0,
+            left: 24,
+            right: 24,
             child: CommonButton(
               onTap: () {
                 GoRouter.of(context).push("/register");
