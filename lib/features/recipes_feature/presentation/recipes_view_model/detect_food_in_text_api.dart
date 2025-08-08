@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:food_guardian/core/utils/snack_bar.dart';
-import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_api_service_logic.dart';
+import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_cubit/recipes_cubit.dart';
 import 'package:food_guardian/features/recipes_feature/recipes_models/detect_text_in_food_model.dart';
 import '../../../../core/utils/constants/constants.dart';
 import '../../recipes_models/for_passing_expire_ingredient.dart';
 
 class DetectFoodInTextApi {
   static var dio = Constants.dio;
-  static String apiKey = RecipesApiServiceLogic.apiKey;
+  static String apiKey = RecipesCubit.apiKey;
   static Future<List<DetectTextInFoodModel>> detectFood(
       BuildContext context) async {
     try {

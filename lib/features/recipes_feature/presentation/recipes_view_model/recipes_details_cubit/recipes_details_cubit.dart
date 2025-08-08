@@ -1,23 +1,29 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:food_guardian/core/utils/snack_bar.dart';
-import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_api_service_logic.dart';
-import '../../../../core/utils/constants/constants.dart';
-import '../../recipes_models/recipe_details_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_details_cubit/recipes_details_states.dart';
 
-class RecipeDetailsApiService {
+import '../../../../../core/utils/constants/constants.dart';
+import '../../../recipes_models/recipe_details_model.dart';
+import '../recipes_cubit/recipes_cubit.dart';
+
+class RecipesDetailsCubit extends Cubit<RecipesDetailsStates> {
+  RecipesDetailsCubit() : super(InitialLoadingDetailsState());
+
   static var dio = Constants.dio;
-  static String apiKey = RecipesApiServiceLogic.apiKey;
-  static String base = RecipesApiServiceLogic.basePath;
+  static String apiKey = RecipesCubit.apiKey;
+  static String base = RecipesCubit.basePath;
 
-  static Future<List<RecipeDetailsModel>> getRecipeDetails(
+  Future<List<RecipeDetailsModel>> getRecipeDetails(
       String id, BuildContext context) async {
+    emit(InitialLoadingDetailsState());
     try {
       Response response = await dio.get(
         "$base/$id/analyzedInstructions?apiKey=$apiKey",
       );
 
       if (response.statusCode == 200) {
+        emit(RecipeDetailsSuccessful());
         final dynamic dataField = response.data;
         if (dataField.isNotEmpty) {
           final List<dynamic> stepsDataField = dataField[0]['steps'];
@@ -32,16 +38,18 @@ class RecipeDetailsApiService {
     } on DioException catch (ex) {
       final badResponse = ex.response?.statusMessage;
       if (badResponse == "Not Found" && context.mounted) {
-        snackBar(
-            context, "Sorry, there is no instructions of this recipe", null);
+        emit(RecipeDetailsFailure(
+            errorMessage: "Sorry, there is no instructions of this recipe"));
         return []; // Don't throw again
       } else if (context.mounted) {
-        snackBar(context, "There is a network error, please try again", null);
+        emit(RecipeDetailsFailure(
+            errorMessage: "There is a network error, please try again"));
         return [];
       }
     } catch (e) {
       if (context.mounted) {
-        snackBar(context, "There is an error, please try again", null);
+        emit(RecipeDetailsFailure(
+            errorMessage: "There is an error, please try again"));
         return [];
       }
     }

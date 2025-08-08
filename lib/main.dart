@@ -7,6 +7,7 @@ import 'package:food_guardian/features/authentication_feature/register_feature/p
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view_model/sign_in_cubit/sign_in_cubit.dart';
 import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_cubit/recipes_cubit.dart';
 import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_cubit/recipes_states.dart';
+import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_details_cubit/recipes_details_cubit.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import 'features/inventory_feature/inventory_models/inventory_category_cubit.dart';
@@ -38,7 +39,8 @@ class FoodGuardian extends StatelessWidget {
         BlocProvider(create: (context) => SignInCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => InventoryCategoryCubit()),
-        BlocProvider(create: (context) => RecipesCubit())
+        BlocProvider(create: (context) => RecipesCubit()),
+        BlocProvider(create: (context) => RecipesDetailsCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
