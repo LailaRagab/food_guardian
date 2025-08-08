@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_guardian/core/utils/app_router.dart';
 import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_cubit.dart';
+import 'package:food_guardian/features/authentication_feature/register_feature/presentation/register_view_model/register_cubit/register_states.dart';
 import 'package:food_guardian/features/authentication_feature/sign_in_feature/presentation/sign_in_view_model/sign_in_cubit/sign_in_cubit.dart';
+import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_cubit/recipes_cubit.dart';
+import 'package:food_guardian/features/recipes_feature/presentation/recipes_view_model/recipes_cubit/recipes_states.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import 'features/inventory_feature/inventory_models/inventory_category_cubit.dart';
@@ -17,16 +20,13 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   WidgetsFlutterBinding.ensureInitialized();
-  //5
   await Hive.initFlutter();
   Hive.registerAdapter(NotificationModelAdapter());
   await Hive.openBox<NotificationModel>('notifications');
-  //1 for switch
   await Hive.openBox("switchState");
   await NotificationService.init();
 
   runApp(FoodGuardian());
-  // 3
 }
 
 class FoodGuardian extends StatelessWidget {
@@ -37,7 +37,8 @@ class FoodGuardian extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => SignInCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
-        BlocProvider(create: (context) => InventoryCategoryCubit())
+        BlocProvider(create: (context) => InventoryCategoryCubit()),
+        BlocProvider(create: (context) => RecipesCubit())
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,

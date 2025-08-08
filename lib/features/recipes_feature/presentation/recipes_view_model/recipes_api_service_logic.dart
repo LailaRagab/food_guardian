@@ -9,7 +9,6 @@ class RecipesApiServiceLogic {
   static var dio = Constants.dio;
   static String basePath = "https://api.spoonacular.com/recipes";
   static String apiKey = "61d9443f7f2a4e75a9852d346df1c217";
-
   static Future<List<RecipesModel>> fetchRecipesFromApi(
       BuildContext context, var listModels) async {
     try {

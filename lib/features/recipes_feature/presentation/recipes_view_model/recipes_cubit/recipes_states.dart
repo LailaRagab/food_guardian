@@ -1,7 +1,11 @@
 class RecipesStates {}
 
-class RecipesDeliverySuccess extends RecipesStates {}
+class RecipesSuccess extends RecipesStates {}
 
-class RecipesDeliveryFailure extends RecipesStates {}
+class InitialLoadingState extends RecipesStates {}
 
-class RecipesLoading extends RecipesStates {}
+class RecipesFailure extends RecipesStates {
+  String errorMessage;
+
+  RecipesFailure({required this.errorMessage});
+}
